@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -47,4 +49,10 @@ public class BarangModel implements Serializable{
     @NotNull
     @Column(nullable = false)
     private Integer jumlahGaransi;
+
+    //Relasi dengan TipeModel
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_tipe", referencedColumnName = "idTipe", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private TipeModel tipe;
 }

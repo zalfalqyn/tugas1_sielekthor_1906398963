@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,4 +43,8 @@ public class MemberModel implements Serializable{
     @Column(nullable = false)
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime tanggalLahir;
+
+    //Relasi dengan PembelianModel
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PembelianModel> listPembelian;
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -46,4 +48,10 @@ public class PembelianModel implements Serializable{
     @Size(max = 50)
     @Column(nullable = false)
     private String noInvoice;
+
+    //Relasi dengan MemberModel
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "no_member", referencedColumnName = "noMember", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private MemberModel member;
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +31,8 @@ public class TipeModel implements Serializable{
     @NotNull
     @Column(nullable = false)
     private String deskripsiTipe;
+
+    //Relasi dengan BarangModel
+    @OneToMany(mappedBy = "tipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BarangModel> listBarang;
 }
