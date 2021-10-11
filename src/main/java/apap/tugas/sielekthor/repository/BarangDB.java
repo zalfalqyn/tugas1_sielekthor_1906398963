@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface BarangDB extends JpaRepository<BarangModel, Long> {
-    Optional<BarangModel> findByIdBarang(Long idBarang);
+    Optional<BarangModel> findBarangById(Long id);
 }

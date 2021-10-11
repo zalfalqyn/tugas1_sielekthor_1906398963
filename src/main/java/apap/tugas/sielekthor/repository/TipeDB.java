@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
+@Repository
 public interface TipeDB extends JpaRepository<TipeModel, Long> {
-    Optional<TipeModel> findByIdPTipe(Long idTipe);
+    Optional<TipeModel> findTipeById(Long id);
 }

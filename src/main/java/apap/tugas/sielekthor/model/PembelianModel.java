@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,7 +52,11 @@ public class PembelianModel implements Serializable{
 
     //Relasi dengan MemberModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "no_member", referencedColumnName = "noMember", nullable = false)
+    @JoinColumn(name = "no_member", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private MemberModel member;
+
+    //Relasi dengan BarangPembelianModel
+    @OneToMany(mappedBy = "pembelian", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BarangPembelianModel> listBarangPembelian;
 }

@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -52,7 +53,11 @@ public class BarangModel implements Serializable{
 
     //Relasi dengan TipeModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_tipe", referencedColumnName = "idTipe", nullable = false)
+    @JoinColumn(name = "id_tipe", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private TipeModel tipe;
+
+    //Relasi dengan BarangPembelianModel
+    @OneToMany(mappedBy = "barang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BarangPembelianModel> listBarangPembelian;
 }

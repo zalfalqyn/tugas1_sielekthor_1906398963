@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface PembelianDB extends JpaRepository<PembelianModel, Long> {
-    Optional<PembelianModel> findByIdPembelian(Long idPembelian);
+    Optional<PembelianModel> findPembelianById(Long id);
 }
