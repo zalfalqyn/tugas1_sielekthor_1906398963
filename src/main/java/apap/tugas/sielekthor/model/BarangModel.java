@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,7 +27,12 @@ public class BarangModel implements Serializable{
     private Long id;
 
     @NotNull
-    @Size(max = 15)
+    @Size(max = 255)
+    @Column(nullable = false)
+    private String namaBarang;
+
+    @NotNull
+    @Size(max = 255)
     @Column(nullable = false)
     private String kodeBarang;
 
@@ -35,11 +41,12 @@ public class BarangModel implements Serializable{
     private Integer hargaBarang;
 
     @NotNull
-    @Size(max = 15)
+    @Size(max = 255)
     @Column(nullable = false)
-    private String merk;
+    private String merkBarang;
 
     @NotNull
+    @Size(max = 255)
     @Column(nullable = false)
     private String deskripsiBarang;
 
@@ -51,13 +58,13 @@ public class BarangModel implements Serializable{
     @Column(nullable = false)
     private Integer jumlahGaransi;
 
-    //Relasi dengan TipeModel
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_tipe", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private TipeModel tipe;
-
-    //Relasi dengan BarangPembelianModel
-    @OneToMany(mappedBy = "barang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BarangPembelianModel> listBarangPembelian;
+//    //Relasi dengan TipeModel
+//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "id_tipe", referencedColumnName = "id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private TipeModel tipe;
+//
+//    //Relasi dengan PembelianBarangModel
+//    @OneToMany(mappedBy = "barang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<PembelianBarangModel> listPembelianBarang;
 }

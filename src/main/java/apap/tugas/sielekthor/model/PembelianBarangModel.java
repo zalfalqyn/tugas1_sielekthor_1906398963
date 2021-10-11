@@ -13,15 +13,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @Entity
-@Table(name = "barangPembelian")
+@Table(name = "pembelianBarang")
 
-public class BarangPembelianModel implements Serializable{
+public class PembelianBarangModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,18 +33,17 @@ public class BarangPembelianModel implements Serializable{
 
     @NotNull
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime tanggalGaransi;
+    private Date tanggalGaransi;
 
-    //Relasi dengan BarangModel
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "no_barang", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private BarangModel barang;
-
-    //Relasi dengan PembelianModel
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "no_pembelian", referencedColumnName = "id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private PembelianModel pembelian;
+//    //Relasi dengan BarangModel
+//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "id_barang", referencedColumnName = "id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private BarangModel barang;
+//
+//    //Relasi dengan PembelianModel
+//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JoinColumn(name = "id_pembelian", referencedColumnName = "id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private PembelianModel pembelian;
 }

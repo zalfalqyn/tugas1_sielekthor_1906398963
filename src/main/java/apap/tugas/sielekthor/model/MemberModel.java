@@ -10,8 +10,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +28,7 @@ public class MemberModel implements Serializable{
     private Long id;
 
     @NotNull
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(nullable = false)
     private String namaMember;
 
@@ -41,10 +43,9 @@ public class MemberModel implements Serializable{
 
     @NotNull
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime tanggalLahir;
+    private Date tanggalLahir;
 
-    //Relasi dengan PembelianModel
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<PembelianModel> listPembelian;
+//    //Relasi dengan PembelianModel
+//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<PembelianModel> listPembelian;
 }
