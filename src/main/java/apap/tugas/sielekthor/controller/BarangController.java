@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,5 +42,16 @@ public class BarangController {
         barangService.addBarang(barang);
         model.addAttribute("kodeBarang", barang.getKodeBarang());
         return "add-barang";
+    }
+
+    @GetMapping("/barang/{id}")
+    public String viewDetailBarang(
+            @PathVariable Long id,
+            Model model
+    ) {
+        BarangModel barang = barangService.getBarangById(id);
+        model.addAttribute("barang", barang);
+
+        return "view-barang";
     }
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIELEKTHOR</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 class="bg-warning" th:style=
+                        "'text-align: center;
+                        margin-bottom: 0px;
+                        padding-top: 15px;
+                        padding-bottom: 15px;'
+                ">Detail Barang</h2>
+                <br>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td th:text="'Nama Barang'"></td>
+                        <td th:text="': '+ ${barang.namaBarang}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Kode Barang'"></td>
+                        <td th:text="': '+ ${barang.kodeBarang}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Merk Barang'"></td>
+                        <td th:text="': '+ ${barang.merkBarang}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Stok Barang'"></td>
+                        <td th:text="': '+ ${barang.stok}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Garansi Toko'"></td>
+                        <td th:text="': '+ ${barang.jumlahGaransi}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Deskripsi'"></td>
+                        <td th:text="': '+ ${barang.deskripsiBarang}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Tipe Barang'"></td>
+                        <td th:text="': '+ ${barang.tipe.nama}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="'Harga'"></td>
+                        <td th:text="': '+ ${barang.hargaBarang}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-outline-warning" href="@{/barang}">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Clock;
 import java.util.List;
 
 @Service
@@ -22,5 +23,11 @@ public class BarangServiceImpl implements BarangService{
     @Override
     public void addBarang(BarangModel barang) {
         barangDB.save(barang);
+    }
+
+    @Override
+    public BarangModel getBarangById(Long Id) {
+//        Long idBarang = Long.valueOf(Id);
+        return barangDB.getById(Id);
     }
 }
