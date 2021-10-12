@@ -17,13 +17,15 @@
                 <h2>Form Tambah Pembelian</h2>
                 <br>
                 <form th:action="@{/pembelian/tambah}" th:object="${pembelian}" method="POST">
+                    <input type="hidden" th:field="*{id}" />
+
                     Nama Admin : <br>
                     <input required class="form-control" type="text" th:field="*{namaAdmin}" />
                     <br><br>
 
                     Pembeli: <br>
-                    <select name="member" class="form-control" th:style="'width:100%'">
-                        <option selected disabled>--pilih membre--</option>
+                    <select name="member" th:field="*{member.id}" class="form-control" th:style="'width:100%'">
+<!--                        <option selected disabled>&#45;&#45;Pilih Member&#45;&#45;</option>-->
                         <option th:each="member : ${listAllMember}" th:value="${member.id}" th:text="${member.namaMember}">
                         </option>
                     </select>
@@ -31,40 +33,42 @@
 
                     Metode Pembayaran : <br>
                     <div>
-                        <input type="radio" th:value="1" name="isCash" />
+                        <input type="radio" th:value="1" name="isCash" th:field="*{isCash}"/>
                         <label th:for="1" th:text="'Tunai'"></label><br>
-                        <input type="radio" th:value="0" name="isCash" />
+                        <input type="radio" th:value="0" name="isCash" th:field="*{isCash}"/>
                         <label th:for="0" th:text="'Cicil'"></label>
                     </div>
                     <br><br>
 
                     <h2>Daftar Barang</h2>
                     <table>
-                        <thead>
+                        <tbody>
+                        <tr th:each="selectedPB, iterationStatus : ${listPembelianBarang}">
+                            <td class="col-md-9">Nama Barang <br>
+                                <select class="form-control" th:field="*{listPembelianBarang[__${iterationStatus.index}__].barang}" th:style="'width:100%'">
+                                    <option th:each="barang : ${listAllBarang}" th:value="${barang.id}" th:text="${barang.namaBarang}">
+                                    </option>
+                                </select>
+                            </td>
+                            <td class="col-md-9">Qty <br>
+                            <input required min="0" class="form-control" type="number" th:field="*{listPembelianBarang[__${iterationStatus.index}__].quantity}"/>
+                            </td>
+                            <td class="col-md-9"><br>
+                                <button class="btn btn-danger" type="submit" name="deleteRow" th:value="${iterationStatus.index}">Hapus</button>
+                            </td>
+                        </tr>
                         <tr>
-                            <th class="col-md-9">Nama Barang</th>
-                            <th class="col-md-9">
+                            <td class="col-md-9">
                                 <button class="btn btn-primary" type="submit" name="addRow" >Tambah Row</button>
-                            </th>
+                            </td>
                         </tr>
                         </thead>
-                        <tbody>
-<!--                        <tr th:each="selectedPB, iterationStatus : ${listPembelianBarang}">-->
-<!--                            <td class="col-md-9">-->
-<!--                                <select th:field="*{listPembelianBarang[__${iterationStatus.index}__].barang}" th:style="'width:100%'">-->
-<!--                                    <option th:each="barang : ${listAllBarang}" th:value="${barang.id}" th:text="${barang.namaBarang}">-->
-<!--                                    </option>-->
-<!--                                </select>-->
-<!--                            </td>-->
-<!--                            <td class="col-md-9">-->
-<!--                                <button class="btn btn-danger" type="submit" name="deleteRow" th:value="${iterationStatus.index}">Hapus</button>-->
-<!--                            </td>-->
-<!--                        </tr>-->
                         </tbody>
                     </table>
                     <br>
-                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
+                    <hr>
                     <a class="btn btn-outline-warning" href="/">Batal</a>
+                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
                 </form>
             </div>
         </div>

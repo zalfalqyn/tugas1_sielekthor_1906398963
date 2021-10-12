@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 public class PembelianModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Long id;
 
     @NotNull

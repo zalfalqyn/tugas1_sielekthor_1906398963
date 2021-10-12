@@ -53,7 +53,20 @@ public class PembelianController {
         PembelianModel pembelian = new PembelianModel();
         List<PembelianBarangModel> listPB = new ArrayList<>();
         listPB.add(new PembelianBarangModel());
-        System.out.println(barangService.getBarangList());
+//        System.out.println(barangService.getBarangList());
+        model.addAttribute("pembelian", pembelian);
+        model.addAttribute("listAllBarang", barangService.getBarangList());
+        model.addAttribute("listPembelianBarang", listPB);
+        model.addAttribute("listAllMember", memberService.getMemberList());
+        return "form-add-pembelian";
+    }
+
+    @PostMapping(value = "/pembelian/tambah", params = "addRow")
+    public String addPembelianBarangFormAddRow(
+            @ModelAttribute PembelianModel pembelian,
+            Model model) {
+        List<PembelianBarangModel> listPB = new ArrayList<PembelianBarangModel>(pembelian.getListPembelianBarang());
+        listPB.add(new PembelianBarangModel());
         model.addAttribute("pembelian", pembelian);
         model.addAttribute("listAllBarang", barangService.getBarangList());
         model.addAttribute("listPembelianBarang", listPB);
@@ -66,29 +79,16 @@ public class PembelianController {
             @ModelAttribute PembelianModel pembelian,
             Model model
     ) {
-//        pembelianService.addPembelian(pembelian);
-        pembelianService.generateInvoice(pembelian);
-        System.out.println(pembelian.getNamaAdmin());
-        System.out.println(pembelian.getMember());
-        System.out.println(pembelian.getIsCash());
-        System.out.println(pembelian.getNamaAdmin());
-        System.out.println(pembelian.getNoInvoice());
-
+//        System.out.println(pembelian.getNamaAdmin());
+//        System.out.println(pembelian.getMember());
+//        System.out.println(pembelian.getIsCash());
+        pembelian.setListPembelianBarang(new ArrayList<>());
+//        System.out.println(pembelian.getListPembelianBarang().get(0).getBarang().getNamaBarang());
+//        System.out.println(pembelian.getListPembelianBarang());
+        pembelianService.addPembelian(pembelian);
         model.addAttribute("pembelian", pembelian);
         return "add-pembelian";
     }
-
-//    @PostMapping(value = "/pembelian/add", params = "addRow")
-//    public String addBioskopFormAddRow(
-//            @ModelAttribute BioskopModel bioskop,
-//            Model model) {
-//        List<FilmModel> listFilm = new ArrayList<FilmModel>(bioskop.getListFilm());
-//        listFilm.add(null);
-//        model.addAttribute("listFilm", listFilm);
-//        model.addAttribute("pembelian", pembelian);
-//        model.addAttribute("listAllFilm", filmService.getListFilm());
-//        return "form-add-pembelian";
-//    }
 
 //    @RequestMapping(value = "/pembelian/add", method=RequestMethod.POST, params = "deleteRow")
 //    public String addBioskopFormDeleteRow(

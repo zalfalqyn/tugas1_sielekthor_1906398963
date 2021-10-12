@@ -9,4 +9,5 @@ public interface PembelianService {
     List<PembelianModel> getPembelianList();
     void generateInvoice(PembelianModel pembelian);
     PembelianModel getPembelianById(Long Id);
+    void addPembelian(PembelianModel pembelian);
 }
