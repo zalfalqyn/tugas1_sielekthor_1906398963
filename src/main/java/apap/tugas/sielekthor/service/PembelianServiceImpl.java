@@ -58,4 +58,9 @@ public class PembelianServiceImpl implements PembelianService{
         String noInvoice = namaAdminOrder + lastNamaAdmin + strTglBeli + strBulanBeli + kodeBayar + sumTanggalBulan + randomLetter;
         pembelian.setNoInvoice(noInvoice);
     }
+
+    @Override
+    public PembelianModel getPembelianById(Long id) {
+        return pembelianDB.getById(id);
+    }
 }

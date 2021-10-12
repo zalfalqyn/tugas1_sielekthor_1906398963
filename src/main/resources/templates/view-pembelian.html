@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SIELEKTHOR</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2 class="bg-warning" th:style=
+                "'text-align: center;
+                        margin-bottom: 0px;
+                        padding-top: 15px;
+                        padding-bottom: 15px;'
+                ">Detail Pembelian</h2>
+        <br>
+        <table class="table">
+          <tbody>
+          <tr>
+            <td th:text="'No Invoice'"></td>
+            <td th:text="': '+ ${pembelian.noInvoice}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Total Harga'"></td>
+            <td th:text="': '+ ${pembelian.total}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Member'"></td>
+            <td th:text="': '+ ${pembelian.member.namaMember}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Jumlah Barang'"></td>
+            <td th:text="': '+ ${pembelian.jumlahBarang}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Tanggal Pembelian'"></td>
+            <td th:text="': '+ ${pembelian.tanggalPembelian}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Nama Admin'"></td>
+            <td th:text="': '+ ${pembelian.namaAdmin}"></td>
+          </tr>
+          <tr>
+            <td th:text="'Metode Pembayaran'"></td>
+            <td th:if="${pembelian.isCash} == 0">Cicilan</td>
+            <td th:if="${pembelian.isCash} == 1">Tunai</td>
+          </tr>
+          </tbody>
+        </table>
+        <a class="btn btn-outline-warning" href="/pembelian">Kembali</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
