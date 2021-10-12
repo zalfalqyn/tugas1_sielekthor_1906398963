@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>SIELEKTHOR</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
@@ -12,23 +12,14 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="d-flex justify-content-center">
     <div class="m-4">
-        <h2>Selamat datang di SIELEKTHOR</h2>
+        <h2>Welcome to SIELEKTHOR</h2>
         <div class="d-flex justify-content-center">
-            <a th:href="@{/}" class="mx-2 btn btn-warning">Lihat semua bioskop</a>
-            <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Tambah bioskop</a>
+            <a th:href="@{/}" class="mx-2 btn btn-warning">Barang</a>
+            <a th:href="@{/}" class="mx-2 btn btn-warning">Pembelian</a>
+            <a th:href="@{/}" class="mx-2 btn btn-warning">Filter Pembelian</a>
         </div>
-        <div class="my-3 d-flex justify-content-center">
-            <a th:href="@{/}" class="mx-2 btn btn-warning">Lihat semua film</a>
-            <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Tambah film</a>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" th:style="'max-width: 18rem;'">
-    <div class="card-body">
-        <h5 class="card-title">Welcome to SIELEKTHOR</h5>
-        <p class="card-text">What do you want to do?.</p>
     </div>
 </div>
 </body>
+
 </html>

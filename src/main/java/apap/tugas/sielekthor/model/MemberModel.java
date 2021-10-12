@@ -45,7 +45,7 @@ public class MemberModel implements Serializable{
     @Column(nullable = false)
     private Date tanggalLahir;
 
-//    //Relasi dengan PembelianModel
-//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<PembelianModel> listPembelian;
+    //Relasi dengan PembelianModel
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PembelianModel> listPembelian;
 }

@@ -33,8 +33,8 @@ public class TipeModel implements Serializable{
     @Size(max = 255)
     @Column(nullable = false)
     private String deskripsiTipe;
-//
-//    //Relasi dengan BarangModel
-//    @OneToMany(mappedBy = "tipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<BarangModel> listBarang;
+
+    //Relasi dengan BarangModel
+    @OneToMany(mappedBy = "tipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BarangModel> listBarang;
 }

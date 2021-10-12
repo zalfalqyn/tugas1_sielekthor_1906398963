@@ -35,15 +35,15 @@ public class PembelianBarangModel implements Serializable{
     @Column(nullable = false)
     private Date tanggalGaransi;
 
-//    //Relasi dengan BarangModel
-//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "id_barang", referencedColumnName = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    private BarangModel barang;
-//
-//    //Relasi dengan PembelianModel
-//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "id_pembelian", referencedColumnName = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    private PembelianModel pembelian;
+    //Relasi dengan BarangModel
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_barang", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private BarangModel barang;
+
+    //Relasi dengan PembelianModel
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_pembelian", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private PembelianModel pembelian;
 }

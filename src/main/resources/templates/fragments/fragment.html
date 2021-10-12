@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand font-weight-bold text-warning" href="#">SIELEKTHOR</a>
+    <a class="navbar-brand font-weight-bold text-dark" href="#">SIELEKTHOR</a>
     <button
             class="navbar-toggler"
             type="button"
@@ -32,24 +32,24 @@
         <ul class="navbar-nav mr-auto">
             <a class="nav-item nav-link "
                th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
-               th:href="@{/}">
+               th:href="@{/barang}">
                 Barang<span class="sr-only">(current)</span>
             </a>
             <a class="nav-item nav-link "
                th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/bioskop/') ? 'active':''}"
-               th:href="@{/bioskop/viewall/}">
+               th:href="@{/pembelian}">
                 Pembelian<span class="sr-only">(current)</span>
             </a>
             <a class="nav-item nav-link "
                th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/film/') ? 'active':''}"
-               th:href="@{/film/viewall}">
+               th:href="@{/pembelian/filter}">
                 Filter Pembelian<span class="sr-only">(current)</span>
             </a>
         </ul>
         <form class="form-inline my-2 my-lg-0" th:action="@{/bioskop/view}" method="GET">
             <input class="form-control mr-sm-2" type="search"
                    name="noBioskop" placeholder="No Bioskop" aria-label="Search">
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
