@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -41,7 +42,7 @@ public class PembelianModel implements Serializable{
     @NotNull
     @Column(nullable = false)
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime tanggalPembelian;
+    private LocalDateTime tanggalPembelian;
 
     @NotNull
     @Column(nullable = false)

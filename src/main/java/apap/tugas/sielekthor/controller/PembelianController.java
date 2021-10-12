@@ -7,12 +7,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class PembelianController {
     @Qualifier("pembelianServiceImpl")
     @Autowired
     private PembelianService pembelianService;
+
+    @GetMapping("/pembelian")
+    public String listBarang(Model model) {
+        List<PembelianModel> listPembelian = pembelianService.getPembelianList();
+        Integer jumlahBarang = listPembelian.size();
+        model.addAttribute("listPembelian", listPembelian);
+        model.addAttribute("jumlahBarang", jumlahBarang);
+        return "viewall-pembelian";
+    }
 }
