@@ -31,17 +31,17 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <a class="nav-item nav-link "
-               th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+               th:classappend="${#httpServletRequest.getRequestURI() == '/barang' ? 'active':''}"
                th:href="@{/barang}">
                 Barang<span class="sr-only">(current)</span>
             </a>
             <a class="nav-item nav-link "
-               th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/bioskop/') ? 'active':''}"
+               th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/pembelian') ? 'active':''}"
                th:href="@{/pembelian}">
                 Pembelian<span class="sr-only">(current)</span>
             </a>
             <a class="nav-item nav-link "
-               th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/film/') ? 'active':''}"
+               th:classappend="${#httpServletRequest.getRequestURI().toString().contains('/filter/pembelian') ? 'active':''}"
                th:href="@{/pembelian/filter}">
                 Filter Pembelian<span class="sr-only">(current)</span>
             </a>

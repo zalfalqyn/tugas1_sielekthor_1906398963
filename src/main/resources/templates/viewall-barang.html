@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>21 Cineplux</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <h2>Daftar Barang</h2>
+    <br>
+    <a th:href="@{/bioskop/add}" class="mx-2 btn btn-warning">Tambah bioskop</a>
+    <div th:if="*{listBarang.size() != 0}">
+        <table class="table">
+            <thead>
+            <tr th:style="'text-align:center;'">
+                <th>No</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Tipe</th>
+                <th>Stok</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="barang, iterationStatus : ${listBarang}"
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${barang.namaBarang}"></td>
+                <td th:text="${bioskop.hargaBarang}"></td>
+                <td th:text="${bioskop.tipe}"></td>
+                <td th:text="${bioskop.stokBarang}"></td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" th:href="@{/barang/view(id=${barang.id})}">Detail</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/barang/update/} + ${barang.id}">Update</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+    <div th:unless="*{listBioskop.size() != 0}">
+        <h2 th:text="'Tidak ada barang'"></h2>
+    </div>
+
+
+</div>
+
+<div th:replace="fragments/fragment :: footer"></div>
+</body>
+
+</html>
