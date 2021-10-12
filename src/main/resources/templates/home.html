@@ -12,11 +12,12 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="d-flex justify-content-center">
     <div class="m-4">
-        <h2>Welcome to SIELEKTHOR</h2>
-        <div class="d-flex justify-content-center">
-            <a th:href="@{/}" class="mx-2 btn btn-warning">Barang</a>
-            <a th:href="@{/}" class="mx-2 btn btn-warning">Pembelian</a>
-            <a th:href="@{/}" class="mx-2 btn btn-warning">Filter Pembelian</a>
+        <h2 th:style="'text-align:center;'">Welcome to SIELEKTHOR</h2>
+        <div class="d-flex justify-content-center" th:style=
+                "'margin:50px;'">
+            <a th:href="@{/barang/viewall}" class="mx-2 btn btn-warning font-weight-bold">Barang</a>
+            <a th:href="@{/}" class="mx-2 btn btn-warning font-weight-bold">Pembelian</a>
+            <a th:href="@{/}" class="mx-2 btn btn-warning font-weight-bold">Filter Pembelian</a>
         </div>
     </div>
 </div>

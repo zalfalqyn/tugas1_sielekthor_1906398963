@@ -10,10 +10,16 @@
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container">
-    <h2>Daftar Barang</h2>
+<div class="container" th:style="'margin-top:70px;'">
+    <h2 th:style=
+            "'text-align:center;
+            padding-bottom:20px;'"
+    >Daftar Barang</h2>
     <br>
-    <a th:href="@{/bioskop/add}" class="mx-2 btn btn-warning">Tambah bioskop</a>
+    <a th:href="@{/barang/tambah}" th:style=
+            "'font-weight:bold;
+            margin-bottom:20px;'"
+       class="mx-2 btn btn-warning">+Tambah bioskop</a>
     <div th:if="*{listBarang.size() != 0}">
         <table class="table">
             <thead>
@@ -43,14 +49,12 @@
         </table>
         </form>
     </div>
-    <div th:unless="*{listBioskop.size() != 0}">
+    <div th:unless="*{listBarang.size() != 0}">
         <h2 th:text="'Tidak ada barang'"></h2>
     </div>
 
 
 </div>
-
-<div th:replace="fragments/fragment :: footer"></div>
 </body>
 
 </html>
