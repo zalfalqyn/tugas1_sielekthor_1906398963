@@ -19,4 +19,8 @@ public class BarangServiceImpl implements BarangService{
         return barangDB.findAll();
     }
 
+    @Override
+    public void addBarang(BarangModel barang) {
+        barangDB.save(barang);
+    }
 }

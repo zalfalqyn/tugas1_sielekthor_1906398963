@@ -26,7 +26,7 @@
           <br><br>
 
           Merk Barang: <br>
-          <input required min="0" class="form-control" type="number" th:field="*{merkBarang}" />
+          <input required class="form-control" type="text" th:field="*{merkBarang}" />
           <br><br>
 
           Stok Barang: <br>
@@ -38,7 +38,7 @@
           <br><br>
 
           Deskripsi: <br>
-          <input required min="0" class="form-control" type="number" th:field="*{deskripsiBarang}" />
+          <input required class="form-control" type="text" th:field="*{deskripsiBarang}" />
           <br><br>
 
           Tipe: <br>
@@ -54,7 +54,7 @@
 
           <br>
           <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
-          <a class="btn btn-outline-warning" href="@{/barang/viewall}">Batal</a>
+          <a class="btn btn-outline-warning" href="@{/barang}">Batal</a>
         </form>
       </div>
     </div>

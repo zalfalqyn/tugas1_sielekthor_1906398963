@@ -23,7 +23,7 @@
     <div th:if="*{listBarang.size() != 0}">
         <table class="table">
             <thead>
-            <tr th:style="'text-align:center;'">
+            <tr th:style="'text-align:center;'" class="bg-warning">
                 <th>No</th>
                 <th>Nama</th>
                 <th>Harga</th>
@@ -34,15 +34,16 @@
             </thead>
             <tbody>
             <tr th:each="barang, iterationStatus : ${listBarang}"
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${barang.namaBarang}"></td>
-                <td th:text="${bioskop.hargaBarang}"></td>
-                <td th:text="${bioskop.tipe}"></td>
-                <td th:text="${bioskop.stokBarang}"></td>
+                <td th:text="Rp + ${barang.hargaBarang}"></td>
+                <td th:text="${barang.tipe.nama}"></td>
+                <td th:text="${barang.stok}"></td>
                 <td>
-                    <a class="btn btn-sm btn-outline-primary" th:href="@{/barang/view(id=${barang.id})}">Detail</a>
-                    <a class="btn btn-sm btn-primary" th:href="@{/barang/update/} + ${barang.id}">Update</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Delete</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/barang/view(id=${barang.id})}">Lihat</a>
+                    <a class="btn btn-sm btn-warning" th:href="@{/barang/update/} + ${barang.id}">Ubah</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Hapus</a>
                 </td>
             </tr>
             </tbody>
