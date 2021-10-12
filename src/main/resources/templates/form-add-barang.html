@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Form Tambah Barang</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+  <div class="card m-4 p-4">
+    <div class="card-body">
+      <div class="justify-content-center">
+        <h2>Form Tambah Barang</h2>
+        <br>
+        <form th:action="@{/barang/tambah}" th:object="${barang}" method="POST">
+          Nama Barang : <br>
+          <input required class="form-control" type="text" th:field="*{namaBarang}" />
+          <br><br>
+
+          Kode Barang : <br>
+          <input required class="form-control" type="text" th:field="*{kodeBarang}" />
+          <br><br>
+
+          Merk Barang: <br>
+          <input required min="0" class="form-control" type="number" th:field="*{merkBarang}" />
+          <br><br>
+
+          Stok Barang: <br>
+          <input required min="0" class="form-control" type="number" th:field="*{stok}" />
+          <br><br>
+
+          Garansi Toko: <br>
+          <input required min="0" class="form-control" type="number" th:field="*{jumlahGaransi}" />
+          <br><br>
+
+          Deskripsi: <br>
+          <input required min="0" class="form-control" type="number" th:field="*{deskripsiBarang}" />
+          <br><br>
+
+          Tipe: <br>
+          <select name="tipe" th:style="'width:100%'">
+            <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
+            </option>
+          </select>
+          <br><br>
+
+          Harga: <br>
+          <input required min="0" class="form-control" type="number" th:field="*{hargaBarang}" />
+          <br><br>
+
+          <br>
+          <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
+          <a class="btn btn-outline-warning" href="@{/barang/viewall}">Batal</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

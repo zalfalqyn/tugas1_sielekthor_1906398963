@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import java.util.List;
 
 @Controller
@@ -21,5 +20,12 @@ public class BarangController {
         List<BarangModel> listBarang = barangService.getBarangList();
         model.addAttribute("listBarang", listBarang);
         return "viewall-barang";
+    }
+
+    @GetMapping("/barang/tambah")
+    public String addBarangForm(Model model) {
+        BarangModel barang = new BarangModel();
+        model.addAttribute("barang", barang);
+        return "form-add-barang";
     }
 }
