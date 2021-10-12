@@ -16,7 +16,7 @@
             padding-bottom:20px;'"
     >Daftar Pembelian</h2>
     <br>
-    <a th:href="@{/barang/tambah}" th:style=
+    <a th:href="@{/pembelian/tambah}" th:style=
             "'font-weight:bold;
             margin-bottom:20px;'"
        class="mx-2 btn btn-warning">+Tambah Pembelian</a>
@@ -43,8 +43,8 @@
                 <td th:text="${jumlahBarang}"></td>
                 <td th:text="${pembelian.tanggalPembelian}"></td>
                 <td>
-                    <a class="btn btn-sm btn-primary" th:href="@{/barang/} + ${barang.id}">Lihat</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Hapus</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/pembelian/} + ${pembelian.id}">Lihat</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/pembelian/delete/} + ${pembelian.id}">Hapus</a>
                 </td>
             </tr>
             </tbody>
