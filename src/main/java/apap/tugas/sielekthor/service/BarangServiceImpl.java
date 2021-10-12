@@ -27,7 +27,11 @@ public class BarangServiceImpl implements BarangService{
 
     @Override
     public BarangModel getBarangById(Long Id) {
-//        Long idBarang = Long.valueOf(Id);
         return barangDB.getById(Id);
+    }
+
+    @Override
+    public void updateBarang(BarangModel barang) {
+        barangDB.save(barang);
     }
 }

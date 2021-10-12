@@ -65,13 +65,15 @@ public class BarangController {
         return "form-update-barang";
     }
 
-//    @PostMapping("/barang/ubah")
-//    public String updateBioskopSubmit(
-//            @ModelAttribute BioskopModel bioskop,
-//            Model model
-//    ) {
-//        bioskopService.updateBioskop(bioskop);
-//        model.addAttribute("noBioskop", bioskop.getNoBioskop());
-//        return "update-bioskop";
-//    }
+    @PostMapping("/barang/ubah")
+    public String updateBioskopSubmit(
+            @ModelAttribute BarangModel barang,
+            Model model
+    ) {
+        barangService.updateBarang(barang);
+        model.addAttribute("kodeBarang", barang.getKodeBarang());
+        System.out.println(barang.getStok());
+        System.out.println(barang.getTipe());
+        return "update-barang";
+    }
 }

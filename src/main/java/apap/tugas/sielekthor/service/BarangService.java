@@ -8,4 +8,5 @@ public interface BarangService {
     List<BarangModel> getBarangList();
     void addBarang(BarangModel barang);
     BarangModel getBarangById(Long Id);
+    void updateBarang(BarangModel barang);
 }
