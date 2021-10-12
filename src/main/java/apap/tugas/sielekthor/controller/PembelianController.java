@@ -74,33 +74,29 @@ public class PembelianController {
         return "form-add-pembelian";
     }
 
+    @RequestMapping(value = "/pembelian/tambah", method=RequestMethod.POST, params = "deleteRow")
+    public String addPembelianBarangFormDeleteRow(
+            @ModelAttribute PembelianModel pembelian,
+            Model model,
+            final HttpServletRequest req) {
+        final Integer rowDelete = Integer.valueOf(req.getParameter("deleteRow"));
+        pembelian.getListPembelianBarang().remove(rowDelete.intValue());
+        model.addAttribute("pembelian", pembelian);
+        model.addAttribute("listAllBarang", barangService.getBarangList());
+        model.addAttribute("listPembelianBarang", pembelian.getListPembelianBarang());
+        model.addAttribute("listAllMember", memberService.getMemberList());
+        return "form-add-pembelian";
+    }
+
     @PostMapping(value = "/pembelian/tambah", params = "submit")
     public String addPembelianSubmit(
             @ModelAttribute PembelianModel pembelian,
             Model model
     ) {
-//        System.out.println(pembelian.getNamaAdmin());
-//        System.out.println(pembelian.getMember());
-//        System.out.println(pembelian.getIsCash());
         pembelian.setListPembelianBarang(new ArrayList<>());
-//        System.out.println(pembelian.getListPembelianBarang().get(0).getBarang().getNamaBarang());
-//        System.out.println(pembelian.getListPembelianBarang());
         pembelianService.addPembelian(pembelian);
         model.addAttribute("pembelian", pembelian);
         return "add-pembelian";
     }
 
-//    @RequestMapping(value = "/pembelian/add", method=RequestMethod.POST, params = "deleteRow")
-//    public String addBioskopFormDeleteRow(
-//            @ModelAttribute BioskopModel bioskop,
-//            Model model,
-//            final HttpServletRequest req) {
-//        final Integer rowDelete = Integer.valueOf(req.getParameter("deleteRow"));
-//        bioskop.getListFilm().remove(rowDelete.intValue());
-//        model.addAttribute("listFilm", bioskop.getListFilm());
-//        model.addAttribute("bioskop", bioskop);
-//        model.addAttribute("listAllFilm", filmService.getListFilm());
-//        return "form-add-bioskop";
-//    }
-//
 }
