@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIELEKTHOR</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Ubah Barang</h2>
+                <br>
+                <form th:action="@{/barang/ubah}" th:object="${barang}" method="POST">
+                    <input type="hidden" th:field="*{id}" />
+
+                    Nama Barang : <br>
+                    <input required class="form-control" type="text" name="namaBarang" th:value="*{namaBarang}" />
+                    <br><br>
+
+                    Kode Barang: <br>
+                    <input required class="form-control" type="text" name="kodeBarang" th:value="*{kodeBarang}" disabled>
+                    <br><br>
+
+                    Merk Barang : <br>
+                    <input required class="form-control" type="text" name="merkBarang" th:value="*{merkBarang}" disabled>
+                    <br><br>
+
+                    Stok Barang: <br>
+                    <input required min="0" class="form-control" type="number" th:field="*{stok}" />
+                    <br><br>
+
+                    Garansi Toko: <br>
+                    <input required min="0" class="form-control" type="number" th:field="*{jumlahGaransi}" />
+                    <br><br>
+
+                    Deskripsi: <br>
+                    <input required class="form-control" type="text" th:field="*{deskripsiBarang}" />
+                    <br><br>
+
+                    <fieldset disabled>
+                    Tipe: <br>
+                    <select class="form-control" name="tipe" th:style="'width:100%'">
+                        <option th:value="*{tipe.id}" th:text="*{tipe.nama}">
+                        </option>
+                    </select>
+                    <br><br>
+                    </fieldset>
+
+                    Harga: <br>
+                    <input required min="0" class="form-control" type="number" th:field="*{hargaBarang}" />
+                    <br><br>
+
+                    <br>
+                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
+                    <a class="btn btn-outline-warning" href="/barang">Batal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

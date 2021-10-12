@@ -41,8 +41,8 @@
                 <td th:text="${barang.tipe.nama}"></td>
                 <td th:text="${barang.stok}"></td>
                 <td>
-                    <a class="btn btn-sm btn-primary" th:href="@{/barang/view(id=${barang.id})}">Lihat</a>
-                    <a class="btn btn-sm btn-warning" th:href="@{/barang/update/} + ${barang.id}">Ubah</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/barang/} + ${barang.id}">Lihat</a>
+                    <a class="btn btn-sm btn-warning" th:href="@{/barang/ubah/} + ${barang.id}">Ubah</a>
                     <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Hapus</a>
                 </td>
             </tr>
