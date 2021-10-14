@@ -10,7 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Date;
@@ -38,11 +38,12 @@ public class MemberModel implements Serializable{
 
     @NotNull
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime tanggalPendaftaran;
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    private LocalDateTime tanggalPendaftaran;
 
     @NotNull
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date tanggalLahir;
 
     //Relasi dengan PembelianModel

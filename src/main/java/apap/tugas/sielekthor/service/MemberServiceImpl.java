@@ -1,5 +1,6 @@
 package apap.tugas.sielekthor.service;
 
+import apap.tugas.sielekthor.model.BarangModel;
 import apap.tugas.sielekthor.model.MemberModel;
 import apap.tugas.sielekthor.repository.MemberDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public List<MemberModel> getMemberList() {
         return memberDB.findAll();
+    }
+
+    @Override
+    public void addMember(MemberModel member) {
+        memberDB.save(member);
     }
 }

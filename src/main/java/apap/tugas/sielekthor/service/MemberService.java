@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MemberService {
     List<MemberModel> getMemberList();
+    void addMember(MemberModel member);
 }
