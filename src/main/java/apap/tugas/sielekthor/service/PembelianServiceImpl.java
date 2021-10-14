@@ -83,4 +83,16 @@ public class PembelianServiceImpl implements PembelianService{
         pembelianDB.save(pembelian);
 //        System.out.println(6);
     }
+
+    @Override
+    public Integer getTotalPembelian(PembelianModel pembelian) {
+        List<PembelianBarangModel> listPembelianBarang = pembelian.getListPembelianBarang();
+        Integer totalHarga = 0;
+        for (PembelianBarangModel pembelianBarang: listPembelianBarang) {
+            Integer qty = pembelianBarang.getQuantity();
+            Integer harga = pembelianBarang.getBarang().getHargaBarang();
+            totalHarga += qty*harga;
+        }
+        return totalHarga;
+    }
 }

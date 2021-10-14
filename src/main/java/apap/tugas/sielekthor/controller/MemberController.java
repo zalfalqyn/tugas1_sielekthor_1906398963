@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -32,22 +33,32 @@ public class MemberController {
     @PostMapping(value = "/member/tambah")
     public String addMemberSubmit(
             @ModelAttribute MemberModel member,
-            @RequestParam("tglLahir") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date tglLahir,
-            @RequestParam("tglDaftar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime tglDaftar,
+//            @RequestParam("tglLahir") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date tglLahir,
+//            @RequestParam("tglDaftar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime tglDaftar,
             Model model
     ) {
-        member.setTanggalLahir(tglLahir);
-        member.setTanggalPendaftaran((tglDaftar));
+        System.out.println("========");
+//        System.out.println(tglLahir);
+//        System.out.println(tglDaftar);
+//        member.setTanggalLahir(tglLahir);
+//        member.setTanggalPendaftaran((tglDaftar));
         memberService.addMember(member);
         model.addAttribute("namaMember", member.getNamaMember());
         model.addAttribute("idMember", member.getId());
         return "add-member";
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+//    @InitBinder
+//    public void initBinder(WebDataBinder webDataBinder) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        dateFormat.setLenient(false);
+//        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+//    }
+
+    @GetMapping("/member")
+    public String listBarang(Model model) {
+        List<MemberModel> listMember = memberService.getMemberList();
+        model.addAttribute("listMember", listMember);
+        return "viewall-member";
     }
 }

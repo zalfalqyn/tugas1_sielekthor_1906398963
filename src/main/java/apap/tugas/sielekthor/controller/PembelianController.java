@@ -30,13 +30,12 @@ public class PembelianController {
     public String listBarang(Model model) {
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
         Integer jumlahBarang = 0;
-        for(PembelianModel pembelian: listPembelian) {
-            List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
-            for(PembelianBarangModel pembelianBarang: listPB) {
-                jumlahBarang += pembelianBarang.getQuantity();
-            }
-        }
-
+//        for(PembelianModel pembelian: listPembelian) {
+//            List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+//            for(PembelianBarangModel pembelianBarang: listPB) {
+//                jumlahBarang += pembelianBarang.getQuantity();
+//            }
+//        }
         model.addAttribute("listPembelian", listPembelian);
         model.addAttribute("jumlahBarang", jumlahBarang);
         return "viewall-pembelian";

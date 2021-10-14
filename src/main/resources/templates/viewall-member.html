@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIELEKTHOR</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container" th:style="'margin-top:70px;'">
+    <h2 th:style=
+                "'text-align:center;
+            padding-bottom:20px;'"
+    >Daftar Member</h2>
+    <br>
+    <a th:href="@{/barang/tambah}" th:style=
+            "'font-weight:bold;
+            margin-bottom:20px;'"
+       class="mx-2 btn btn-warning">+Tambah Member</a>
+    <div th:if="*{listMember.size() != 0}">
+        <table class="table">
+            <thead>
+            <tr th:style="'text-align:center;'" class="bg-warning">
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Tanggal Pendaftaran</th>
+                <th>Jenis Kelamin</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member, iterationStatus : ${listMember}"
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${member.namaMember}"></td>
+                <td th:text="${member.tanggalLahir}"></td>
+                <td th:text="${member.tanggalPendaftaran}"></td>
+                <td th:if="${member.jenisKelamin} == 0">Laki-laki</td>
+                <td th:if="${member.jenisKelamin} == 1">Perempuan</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/member/ubah/} + ${member.id}">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+    <div th:unless="*{listMember.size() != 0}">
+        <h2 th:text="'Tidak ada member'"></h2>
+    </div>
+
+
+</div>
+</body>
+
+</html>
