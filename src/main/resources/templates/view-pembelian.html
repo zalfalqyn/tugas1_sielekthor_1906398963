@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td th:text="'Jumlah Barang'"></td>
-            <td th:text="': '+ ${pembelian.jumlahBarang}"></td>
+            <td th:text="': '+ ${jumlahBarang}"></td>
           </tr>
           <tr>
             <td th:text="'Tanggal Pembelian'"></td>
@@ -49,14 +49,55 @@
           </tr>
           <tr>
             <td th:text="'Metode Pembayaran'"></td>
-            <td th:if="${pembelian.isCash} == 0">Cicilan</td>
-            <td th:if="${pembelian.isCash} == 1">Tunai</td>
+            <td th:if="${pembelian.isCash} == false">: Cicilan</td>
+            <td th:if="${pembelian.isCash} == true">: Tunai</td>
           </tr>
           </tbody>
         </table>
         <a class="btn btn-outline-warning" href="/pembelian">Kembali</a>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container" th:style="'margin-top:70px;'">
+  <h2 th:style=
+              "'text-align:center;
+            padding-bottom:20px;'"
+  >Daftar Barang</h2>
+  <br>
+  <div th:if="*{listPB.size() != 0}">
+    <table class="table">
+      <thead>
+      <tr th:style="'text-align:center;'" class="bg-warning">
+        <th>No</th>
+        <th>Nama</th>
+        <th>Merk</th>
+        <th>Tipe</th>
+        <th>Tanggal Garansi</th>
+        <th>Harga</th>
+        <th>Qty</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pembelianBarang, iterationStatus : ${listPB}"
+          th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${pembelianBarang.barang.namaBarang}"></td>
+        <td th:text="${pembelianBarang.barang.merkBarang}"></td>
+        <td th:text="${pembelianBarang.barang.tipeBarang}"></td>
+        <td></td>
+        <td th:text="Rp + ${pembelianBarang.barang.hargaBarang}"></td>
+        <td th:text="${pembelianBarang.quantity}"></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+    </form>
+  </div>
+  <div th:unless="*{listPB.size() != 0}">
+    <h2 th:text="'Tidak ada barang'"></h2>
   </div>
 </div>
 

@@ -29,7 +29,14 @@ public class PembelianController {
     @GetMapping("/pembelian")
     public String listBarang(Model model) {
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
-        Integer jumlahBarang = listPembelian.size();
+        Integer jumlahBarang = 0;
+        for(PembelianModel pembelian: listPembelian) {
+            List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+            for(PembelianBarangModel pembelianBarang: listPB) {
+                jumlahBarang += pembelianBarang.getQuantity();
+            }
+        }
+
         model.addAttribute("listPembelian", listPembelian);
         model.addAttribute("jumlahBarang", jumlahBarang);
         return "viewall-pembelian";
@@ -41,10 +48,15 @@ public class PembelianController {
             Model model
     ) {
         PembelianModel pembelian = pembelianService.getPembelianById(id);
+        List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+        int totalBarang = 0;
+        for(PembelianBarangModel barangPembelian: listPB) {
+            totalBarang = barangPembelian.getQuantity();
+        }
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
-        Integer jumlahBarang = listPembelian.size();
         model.addAttribute("pembelian", pembelian);
-        model.addAttribute("jumlahBarang", jumlahBarang);
+        model.addAttribute("listPB", listPB);
+        model.addAttribute("totalBarang", totalBarang);
         return "view-pembelian";
     }
 

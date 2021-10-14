@@ -34,13 +34,17 @@
             </tr>
             </thead>
             <tbody>
+            <div th:with="jumlah=0"></div>
             <tr th:each="pembelian, iterationStatus : ${listPembelian}"
                 th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${pembelian.noInvoice}"></td>
                 <td th:text="Rp + ${pembelian.total}"></td>
                 <td th:text="${pembelian.member.namaMember}"></td>
-                <td th:text="${jumlahBarang}"></td>
+                <div th:each="pembelianBarang : ${pembelian.listPembelianBarang}"
+                    th:with="jumlah=(${pembelianBarang.quantity} + jumlah)">
+                    </div>
+                <td th:text="${jumlah}"></td>
                 <td th:text="${pembelian.tanggalPembelian}"></td>
                 <td>
                     <a class="btn btn-sm btn-primary" th:href="@{/pembelian/} + ${pembelian.id}">Lihat</a>
