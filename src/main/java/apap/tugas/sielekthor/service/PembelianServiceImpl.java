@@ -74,7 +74,7 @@ public class PembelianServiceImpl implements PembelianService{
         int totalHarga = 0;
         List<PembelianBarangModel> allBarangPembelian = pembelian.getListPembelianBarang();
         pembelian.setTanggalPembelian(LocalDateTime.now());
-        System.out.println(LocalDateTime.now());
+        System.out.println(pembelian.getTanggalPembelian());
 
         for(PembelianBarangModel barangPembelian: allBarangPembelian) {
             Integer jmlGaransi = barangPembelian.getBarang().getJumlahGaransi();

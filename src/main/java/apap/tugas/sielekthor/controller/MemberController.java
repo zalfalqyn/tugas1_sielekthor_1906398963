@@ -33,11 +33,13 @@ public class MemberController {
     @PostMapping(value = "/member/tambah")
     public String addMemberSubmit(
             @ModelAttribute MemberModel member,
-//            @RequestParam("tglLahir") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date tglLahir,
-//            @RequestParam("tglDaftar") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime tglDaftar,
             Model model
     ) {
-        System.out.println("========");
+//        System.out.println("========");
+//        System.out.println(member.getNamaMember());
+//        System.out.println(member.getJenisKelamin());
+//        System.out.println(member.getTanggalLahir());
+//        System.out.println(member.getTanggalPendaftaran());
 //        System.out.println(tglLahir);
 //        System.out.println(tglDaftar);
 //        member.setTanggalLahir(tglLahir);
@@ -56,7 +58,7 @@ public class MemberController {
 //    }
 
     @GetMapping("/member")
-    public String listBarang(Model model) {
+    public String listMember(Model model) {
         List<MemberModel> listMember = memberService.getMemberList();
         model.addAttribute("listMember", listMember);
         return "viewall-member";
