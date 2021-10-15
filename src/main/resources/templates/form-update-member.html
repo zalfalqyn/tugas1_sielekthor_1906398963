@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIELEKTHOR</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Form Ubah Member</h2>
+                <br>
+                <form th:action="@{/member/ubah}" th:object="${member}" method="POST">
+                    <input type="hidden" th:field="*{id}"/>
+
+                    Nama<br>
+                    <input required class="form-control" type="text" th:field="*{namaMember}" name="namaMember" th:value="*{namaMember}" />
+                    <br><br>
+
+                    Tanggal Lahir<br>
+                    <input required class="form-control" type="date" th:field="*{tanggalLahir}" th:value="*{tanggalLahir}"/>
+                    <br><br>
+
+                    Tanggal Pendaftaran<br>
+                    <input required class="form-control" type="datetime-local" th:field="*{tanggalPendaftaran}" th:value="*{tanggalPendaftaran}"/>
+                    <br><br>
+
+                    Jenis Kelamin<br>
+                    <div>
+                        <input type="radio" th:value="*{jenisKelamin}" name="jenisKelamin" th:field="*{jenisKelamin}" disabled/>
+                        <label th:for="1" th:text="'Laki-laki'"></label><br>
+                        <input type="radio" th:value="*{jenisKelamin}" name="jenisKelamin" th:field="*{jenisKelamin}" disabled/>
+                        <label th:for="0" th:text="'Perempuan'"></label>
+                        <input type="hidden" th:field="*{jenisKelamin}"/>
+                    </div>
+
+                    <br>
+                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
+                    <a class="btn btn-outline-warning" href="/member">Batal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

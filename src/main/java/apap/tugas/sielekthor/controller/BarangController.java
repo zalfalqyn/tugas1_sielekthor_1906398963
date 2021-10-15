@@ -66,7 +66,7 @@ public class BarangController {
     }
 
     @PostMapping("/barang/ubah")
-    public String updateBioskopSubmit(
+    public String updateBarangSubmit(
             @ModelAttribute BarangModel barang,
             Model model
     ) {

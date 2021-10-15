@@ -29,11 +29,11 @@ public class PembelianServiceImpl implements PembelianService{
 
     @Override
     public void generateInvoice(PembelianModel pembelian) {
-        String namaAdmin = pembelian.getNamaAdmin().toUpperCase();
+        String namaMember = pembelian.getMember().getNamaMember().toUpperCase();
+        int valFirstChar = ((int)namaMember.charAt(0) - 64) % 10;
+        String namaMemberOrder = Integer.toString(valFirstChar);
 
-        int valFirstChar = ((int)namaAdmin.charAt(0) - 64) % 10;
-        String namaAdminOrder = Integer.toString(valFirstChar);
-
+        String namaAdmin = pembelian.getNamaAdmin();
         char lastCharNamaAdmin = namaAdmin.charAt(namaAdmin.length()-1);
         String lastNamaAdmin = String.valueOf(lastCharNamaAdmin);
 
@@ -60,7 +60,7 @@ public class PembelianServiceImpl implements PembelianService{
         int rand2 = new Random().nextInt(24) + 65;
         String randomLetter = String.valueOf(Character.toChars(rand1)) + String.valueOf(Character.toChars(rand2));
 
-        String noInvoice = namaAdminOrder + lastNamaAdmin + strTglBeli + strBulanBeli + kodeBayar + sumTanggalBulan + randomLetter;
+        String noInvoice = namaMemberOrder + lastNamaAdmin + strTglBeli + strBulanBeli + kodeBayar + sumTanggalBulan + randomLetter;
         pembelian.setNoInvoice(noInvoice);
     }
 
