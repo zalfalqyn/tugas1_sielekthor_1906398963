@@ -3,11 +3,13 @@ package apap.tugas.sielekthor.service;
 import apap.tugas.sielekthor.model.PembelianBarangModel;
 import apap.tugas.sielekthor.model.PembelianModel;
 import apap.tugas.sielekthor.repository.PembelianDB;
+import apap.tugas.sielekthor.repository.PembelianBarangDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
 public class PembelianServiceImpl implements PembelianService{
     @Autowired
     PembelianDB pembelianDB;
+    @Autowired
+    PembelianBarangDB pembelianBarangDB;
 
     @Override
     public List<PembelianModel> getPembelianList() {
@@ -67,21 +71,26 @@ public class PembelianServiceImpl implements PembelianService{
 
     @Override
     public void addPembelian(PembelianModel pembelian) {
-        pembelian.setTanggalPembelian(LocalDateTime.now());
-
-        List<PembelianBarangModel> allBarangPembelian = pembelian.getListPembelianBarang();
         int totalHarga = 0;
-        for(PembelianBarangModel barangPembelian: allBarangPembelian) {
-            int hargaBarang = barangPembelian.getBarang().getHargaBarang();
-            totalHarga += barangPembelian.getQuantity()*hargaBarang;
-        }
-        pembelian.setTotal(totalHarga);
+        List<PembelianBarangModel> allBarangPembelian = pembelian.getListPembelianBarang();
+        pembelian.setTanggalPembelian(LocalDateTime.now());
+        System.out.println(LocalDateTime.now());
 
+        for(PembelianBarangModel barangPembelian: allBarangPembelian) {
+            Integer jmlGaransi = barangPembelian.getBarang().getJumlahGaransi();
+            LocalDateTime tglGaransi = pembelian.getTanggalPembelian().plusDays(jmlGaransi);
+            barangPembelian.setTanggalGaransi(tglGaransi);
+
+            int hargaBarang = barangPembelian.getBarang().getHargaBarang();
+            totalHarga += barangPembelian.getQuantity() * hargaBarang;
+
+            barangPembelian.setPembelian(pembelian);
+        }
+
+
+        pembelian.setTotal(totalHarga);
         generateInvoice(pembelian);
-//        System.out.println(pembelian.getNoInvoice());
-//        System.out.println(pembelian.getTanggalPembelian());
         pembelianDB.save(pembelian);
-//        System.out.println(6);
     }
 
     @Override

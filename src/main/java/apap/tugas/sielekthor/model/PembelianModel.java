@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class PembelianModel implements Serializable{
 
     @NotNull
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
+    @DateTimeFormat(pattern = "DD MMMM yyyy")
     private LocalDateTime tanggalPembelian;
 
     @NotNull

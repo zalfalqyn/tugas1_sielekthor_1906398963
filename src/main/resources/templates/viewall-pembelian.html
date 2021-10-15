@@ -39,7 +39,7 @@
                 th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${pembelian.noInvoice}"></td>
-                <td th:text="Rp + ${pembelian.getTotalPembelian()}"></td>
+                <td th:text="Rp + ${pembelian}"></td>
                 <td th:text="${pembelian.member.namaMember}"></td>
                 <td th:text="${jumlah}"></td>
                 <td th:text="${pembelian.tanggalPembelian}"></td>

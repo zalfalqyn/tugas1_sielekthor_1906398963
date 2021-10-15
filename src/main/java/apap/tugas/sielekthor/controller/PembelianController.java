@@ -104,9 +104,8 @@ public class PembelianController {
             @ModelAttribute PembelianModel pembelian,
             Model model
     ) {
-        pembelian.setListPembelianBarang(new ArrayList<>());
         pembelianService.addPembelian(pembelian);
-        model.addAttribute("pembelian", pembelian);
+        model.addAttribute("id", pembelian.getId());
         return "add-pembelian";
     }
 

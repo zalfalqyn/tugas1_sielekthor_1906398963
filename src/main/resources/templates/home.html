@@ -12,12 +12,25 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="d-flex justify-content-center">
     <div class="m-4">
-        <h2 th:style="'text-align:center;'">Welcome to SIELEKTHOR</h2>
-        <div class="d-flex justify-content-center" th:style=
-                "'margin:50px;'">
-            <a th:href="@{/barang/viewall}" class="mx-2 btn btn-warning font-weight-bold">Barang</a>
-            <a th:href="@{/}" class="mx-2 btn btn-warning font-weight-bold">Pembelian</a>
-            <a th:href="@{/}" class="mx-2 btn btn-warning font-weight-bold">Filter Pembelian</a>
+        <div class="container bg-warning"
+             th:style="'padding:60px 100px 60px 100px;
+                        margin-top:80px;
+                        border-radius:20px;'">
+            <h2 class="text-center font-weight-bold text-light">WELCOME TO SIELEKTHOR</h2></div>
+        <div class="justify-content-center">
+            <h5 class="text-center font-weight-bold text-warning"  th:style= "'margin:30px;'">
+            List of Features:</h5>
+            <div class="d-flex justify-content-center" th:style="'
+            .a {
+                font-size: 18px;
+                padding-left: 45px;
+                padding-right: 45px;
+                border-radius: 10px;
+            }'">
+                <a th:href="@{/barang}" class="mx-2 btn btn-warning font-weight-bold">Barang</a>
+                <a th:href="@{/pembelian}" class="mx-2 btn btn-warning font-weight-bold">Pembelian</a>
+                <a th:href="@{/}" class="mx-2 btn btn-warning font-weight-bold">Filter Pembelian</a>
+            </div>
         </div>
     </div>
 </div>

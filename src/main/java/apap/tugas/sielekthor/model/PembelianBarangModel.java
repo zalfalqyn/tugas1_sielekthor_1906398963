@@ -10,8 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -33,7 +34,8 @@ public class PembelianBarangModel implements Serializable{
 
     @NotNull
     @Column(nullable = false)
-    private Date tanggalGaransi;
+    @DateTimeFormat(pattern = "DD MMMM yyyy")
+    private LocalDateTime tanggalGaransi;
 
     //Relasi dengan BarangModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)

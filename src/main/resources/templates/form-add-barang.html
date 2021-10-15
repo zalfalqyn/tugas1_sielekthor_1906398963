@@ -11,54 +11,48 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-  <div class="card m-4 p-4">
-    <div class="card-body">
-      <div class="justify-content-center">
-        <h2>Form Tambah Barang</h2>
+    <div class="card-body row no-gutters justify-content-center">
+        <h2 class="text-center col-md-12">Form Tambah Barang</h2>
         <br>
-        <form th:action="@{/barang/tambah}" th:object="${barang}" method="POST">
+      <div class="container col-md-8 p-4 m-4" th:style="'
+        background:#E0E0E0;
+        border-radius:20px;'">
+        <form th:action="@{/barang/tambah}" th:object="${barang}" method="POST" class="mr-3 ml-3">
           Nama Barang : <br>
           <input required class="form-control" type="text" th:field="*{namaBarang}" />
-          <br><br>
 
           Kode Barang : <br>
           <input required class="form-control" type="text" th:field="*{kodeBarang}" />
-          <br><br>
 
           Merk Barang: <br>
           <input required class="form-control" type="text" th:field="*{merkBarang}" />
-          <br><br>
 
           Stok Barang: <br>
           <input required min="0" class="form-control" type="number" th:field="*{stok}" />
-          <br><br>
 
           Garansi Toko: <br>
           <input required min="0" class="form-control" type="number" th:field="*{jumlahGaransi}" />
-          <br><br>
 
           Deskripsi: <br>
           <input required class="form-control" type="text" th:field="*{deskripsiBarang}" />
-          <br><br>
 
           Tipe: <br>
-          <select name="tipe" th:style="'width:100%'">
+          <select class="form-control" name="tipe" th:style="'width:100%'">
             <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
             </option>
           </select>
-          <br><br>
 
           Harga: <br>
-          <input required min="0" class="form-control" type="number" th:field="*{hargaBarang}" />
-          <br><br>
+          <input required min="0" class="form-control " type="number" th:field="*{hargaBarang}" />
 
           <br>
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-light text-warning border-warning mr-4" href="@{/barang}">Batal</a>
           <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
-          <a class="btn btn-outline-warning" href="@{/barang}">Batal</a>
+          </div>
         </form>
       </div>
     </div>
-  </div>
 </div>
 
 </body>
