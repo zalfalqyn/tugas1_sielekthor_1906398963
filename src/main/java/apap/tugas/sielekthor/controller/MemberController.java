@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -66,13 +67,18 @@ public class MemberController {
             @ModelAttribute MemberModel member,
             Model model
     ) {
+        MemberModel memberNew = memberService.getMemberById(member.getId());
+        List<PembelianModel> listPembelian = memberNew.getListPembelian();
+        List<String> listNoInvoice = new ArrayList<>();
         memberService.updateMember(member);
-        List<PembelianModel> listPembelian = member.getListPembelian();
         for (PembelianModel pembelian: listPembelian) {
             pembelianService.generateInvoice(pembelian);
+            listNoInvoice.add(pembelian.getNoInvoice());
             pembelianDB.save(pembelian);
         }
-        model.addAttribute("namaMember", member.getNamaMember());
+        model.addAttribute("namaMember", memberNew.getNamaMember());
+        model.addAttribute("listNoInvoice", listNoInvoice);
+
         return "update-member";
     }
 }

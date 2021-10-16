@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Form Tambah Barang</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card-body row no-gutters justify-content-center">
+        <h2 class="text-center col-md-12">Cari Pembelian</h2>
+        <br>
+      <div class="container col-md-8 p-4 m-4" th:style="'
+        background:#E0E0E0;
+        border-radius:20px;'">
+        <form th:action="@{/filter-pembelian}" method="POST" class="mr-3 ml-3">
+          Member : <br>
+          <select name="idMember" class="form-control" th:style="'width:100%'">
+            <option th:each="member : ${listAllMember}" th:value="${member.id}" th:text="${member.namaMember}">
+            </option>
+          </select>
+          <br><br>
+
+          Metode Pembayaran : <br>
+          <div>
+            <input type="radio" th:value="1" name="isCash"/>
+            <label th:for="1" th:text="'Tunai'"></label><br>
+            <input type="radio" th:value="0" name="isCash"/>
+            <label th:for="0" th:text="'Cicil'"></label>
+          </div>
+          <br><br>
+
+          <br>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-warning" type="submit" >Cari</button>
+            <a class="btn btn-light text-warning border-warning mr-4" href="/pembelian">Kembali</a>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+</body>
+
+</html>

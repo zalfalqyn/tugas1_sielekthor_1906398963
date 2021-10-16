@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SIELEKTHOR</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container" th:style="'margin-top:70px;'">
+    <form th:action="@{/barang/cari}" method="POST" class="mr-3 ml-3">
+        Tipe : <br>
+        <select name="idTipe" class="form-control" th:style="'width:100%'">
+            <option th:each="tipe : ${listAllTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
+            </option>
+        </select>
+        <br><br>
+
+        Stok : <br>
+        <div>
+            <input type="radio" th:value="1" name="isAvail"/>
+            <label th:for="1" th:text="'Available'"></label><br>
+            <input type="radio" th:value="0" name="isAvail"/>
+            <label th:for="0" th:text="'Sold Out'"></label>
+        </div>
+        <br><br>
+
+        <br>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-warning" type="submit" >Cari</button>
+            <a class="btn btn-light text-warning border-warning mr-4" href="/barang">Kembali</a>
+        </div>
+    </form>
+
+    <br><br>
+
+    <div th:if="*{listBarang.size() != 0}">
+        <table class="table">
+            <thead>
+            <tr th:style="'text-align:center;'" class="bg-warning">
+                <th>No</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Tipe</th>
+                <th>Stok</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="barang, iterationStatus : ${listBarang}"
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${barang.namaBarang}"></td>
+                <td th:text="Rp + ${barang.hargaBarang}"></td>
+                <td th:text="${barang.tipe.nama}"></td>
+                <td th:text="${barang.stok}"></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/barang/} + ${barang.id}">Lihat</a>
+                    <a class="btn btn-sm btn-warning" th:href="@{/barang/ubah/} + ${barang.id}">Ubah</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/barang/delete/} + ${barang.id}">Hapus</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+    <div th:unless="*{listBarang.size() != 0}">
+        <h2 th:text="'Tidak ada barang'"></h2>
+    </div>
+
+</div>
+</body>
+
+</html>

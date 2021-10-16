@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface PembelianService {
     List<PembelianModel> getPembelianList();
+    List<PembelianModel> getPembelianListFilter(Long Id, Boolean isCash);
     void generateInvoice(PembelianModel pembelian);
     PembelianModel getPembelianById(Long Id);
     void addPembelian(PembelianModel pembelian);
     Integer getTotalPembelian(PembelianModel pembelian);
+    void deletePembelian(PembelianModel pembelian);
 }

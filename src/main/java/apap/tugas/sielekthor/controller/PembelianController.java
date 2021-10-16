@@ -29,15 +29,18 @@ public class PembelianController {
     @GetMapping("/pembelian")
     public String listBarang(Model model) {
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
-        Integer jumlahBarang = 0;
+        List<Integer> listJumlahBarang = new ArrayList<>();
+
         for(PembelianModel pembelian: listPembelian) {
             List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+            int jumlahBarang = 0;
             for(PembelianBarangModel pembelianBarang: listPB) {
                 jumlahBarang += pembelianBarang.getQuantity();
             }
+            listJumlahBarang.add(jumlahBarang);
         }
         model.addAttribute("listPembelian", listPembelian);
-        model.addAttribute("jumlahBarang", jumlahBarang);
+        model.addAttribute("listJumlahBarang", listJumlahBarang);
         return "viewall-pembelian";
     }
 
@@ -51,9 +54,10 @@ public class PembelianController {
         List<Integer> listTotalHargaBarang = new ArrayList<>();
         int totalBarang = 0;
         for(PembelianBarangModel barangPembelian: listPB) {
-            totalBarang = barangPembelian.getQuantity();
+            int jumlahBarang = barangPembelian.getQuantity();
             int hargaBarang = barangPembelian.getBarang().getHargaBarang();
-            listTotalHargaBarang.add(totalBarang*hargaBarang);
+            listTotalHargaBarang.add(jumlahBarang*hargaBarang);
+            totalBarang += jumlahBarang;
         }
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
         model.addAttribute("pembelian", pembelian);
@@ -68,7 +72,6 @@ public class PembelianController {
         PembelianModel pembelian = new PembelianModel();
         List<PembelianBarangModel> listPB = new ArrayList<>();
         listPB.add(new PembelianBarangModel());
-//        System.out.println(barangService.getBarangList());
         model.addAttribute("pembelian", pembelian);
         model.addAttribute("listAllBarang", barangService.getBarangList());
         model.addAttribute("listPembelianBarang", listPB);
@@ -112,5 +115,20 @@ public class PembelianController {
         model.addAttribute("id", pembelian.getId());
         return "add-pembelian";
     }
+
+    @PostMapping(value = "/pembelian/hapus/{id}")
+    public String hapusPembelian(
+            @PathVariable Long id,
+            Model model
+    ) {
+        PembelianModel pembelian = pembelianService.getPembelianById(id);
+        pembelianService.deletePembelian(pembelian);
+        List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+        model.addAttribute("noInvoice", pembelian.getNoInvoice());
+        model.addAttribute("listPB", listPB);
+        return "delete-pembelian";
+    }
+
+
 
 }

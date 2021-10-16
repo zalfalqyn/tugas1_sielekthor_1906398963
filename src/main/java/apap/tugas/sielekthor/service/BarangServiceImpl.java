@@ -1,6 +1,9 @@
 package apap.tugas.sielekthor.service;
 
 import apap.tugas.sielekthor.model.BarangModel;
+import apap.tugas.sielekthor.model.MemberModel;
+import apap.tugas.sielekthor.model.PembelianModel;
+import apap.tugas.sielekthor.model.TipeModel;
 import apap.tugas.sielekthor.repository.BarangDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,9 @@ import java.util.List;
 public class BarangServiceImpl implements BarangService{
     @Autowired
     BarangDB barangDB;
+
+    @Autowired
+    TipeService tipeService;
 
     @Override
     public List<BarangModel> getBarangList() {
@@ -33,5 +39,15 @@ public class BarangServiceImpl implements BarangService{
     @Override
     public void updateBarang(BarangModel barang) {
         barangDB.save(barang);
+    }
+
+    @Override
+    public List<BarangModel> getBarangListFilter(Long idTipe, Boolean isAvail){
+        TipeModel tipe = tipeService.getTipeById(idTipe);
+        if (isAvail){
+            return barangDB.findPembelianByTipeAndStokAfter(tipe, 1);
+        }
+        return  barangDB.findPembelianByTipeAndStokBefore(tipe, 1);
+
     }
 }

@@ -1,5 +1,6 @@
 package apap.tugas.sielekthor.service;
 
+import apap.tugas.sielekthor.model.BarangModel;
 import apap.tugas.sielekthor.model.TipeModel;
 import apap.tugas.sielekthor.repository.TipeDB;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class TipeServiceImpl implements TipeService{
     @Override
     public List<TipeModel> getListTipe() {
         return tipeDB.findAll();
+    }
+
+    @Override
+    public TipeModel getTipeById(Long Id) {
+        return tipeDB.getById(Id);
     }
 }

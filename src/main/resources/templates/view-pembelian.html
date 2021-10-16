@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td th:text="'Jumlah Barang'"></td>
-            <td th:text="': '+ ${jumlahBarang}"></td>
+            <td th:text="': '+ ${totalBarang}"></td>
           </tr>
           <tr>
             <td th:text="'Tanggal Pembelian'"></td>
@@ -54,6 +54,9 @@
           </tr>
           </tbody>
         </table>
+        <form th:action="@{/pembelian/hapus/} + ${pembelian.id}" method="POST">
+          <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+        </form>
       </div>
     </div>
   </div>

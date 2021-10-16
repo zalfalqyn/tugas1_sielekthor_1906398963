@@ -1,5 +1,6 @@
 package apap.tugas.sielekthor.service;
 
+import apap.tugas.sielekthor.model.MemberModel;
 import apap.tugas.sielekthor.model.PembelianBarangModel;
 import apap.tugas.sielekthor.model.PembelianModel;
 import apap.tugas.sielekthor.repository.PembelianDB;
@@ -21,6 +22,8 @@ public class PembelianServiceImpl implements PembelianService{
     PembelianDB pembelianDB;
     @Autowired
     PembelianBarangDB pembelianBarangDB;
+    @Autowired
+    MemberService memberService;
 
     @Override
     public List<PembelianModel> getPembelianList() {
@@ -29,13 +32,14 @@ public class PembelianServiceImpl implements PembelianService{
 
     @Override
     public void generateInvoice(PembelianModel pembelian) {
-        String namaMember = pembelian.getMember().getNamaMember().toUpperCase();
+        MemberModel member = memberService.getMemberById(pembelian.getMember().getId());
+        String namaMember = member.getNamaMember().toUpperCase();
         int valFirstChar = ((int)namaMember.charAt(0) - 64) % 10;
         String namaMemberOrder = Integer.toString(valFirstChar);
 
         String namaAdmin = pembelian.getNamaAdmin();
         char lastCharNamaAdmin = namaAdmin.charAt(namaAdmin.length()-1);
-        String lastNamaAdmin = String.valueOf(lastCharNamaAdmin);
+        String lastNamaAdmin = String.valueOf(lastCharNamaAdmin).toUpperCase();
 
         LocalDateTime tglBeli = pembelian.getTanggalPembelian();
         Integer intTglBeli = tglBeli.getDayOfMonth();
@@ -74,7 +78,6 @@ public class PembelianServiceImpl implements PembelianService{
         int totalHarga = 0;
         List<PembelianBarangModel> allBarangPembelian = pembelian.getListPembelianBarang();
         pembelian.setTanggalPembelian(LocalDateTime.now());
-        System.out.println(pembelian.getTanggalPembelian());
 
         for(PembelianBarangModel barangPembelian: allBarangPembelian) {
             Integer jmlGaransi = barangPembelian.getBarang().getJumlahGaransi();
@@ -103,5 +106,17 @@ public class PembelianServiceImpl implements PembelianService{
             totalHarga += qty*harga;
         }
         return totalHarga;
+    }
+
+    @Override
+    public void deletePembelian(PembelianModel pembelian){
+        pembelian.getMember().getListPembelian().remove(pembelian);
+        pembelianDB.delete(pembelian);
+    }
+
+    @Override
+    public List<PembelianModel> getPembelianListFilter(Long idMember, Boolean isCash){
+        MemberModel member = memberService.getMemberById(idMember);
+        return pembelianDB.findPembelianByMemberAndIsCash(member, isCash);
     }
 }

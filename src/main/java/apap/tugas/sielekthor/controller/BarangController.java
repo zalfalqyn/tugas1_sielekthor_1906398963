@@ -1,6 +1,9 @@
 package apap.tugas.sielekthor.controller;
 
 import apap.tugas.sielekthor.model.BarangModel;
+import apap.tugas.sielekthor.model.MemberModel;
+import apap.tugas.sielekthor.model.PembelianModel;
+import apap.tugas.sielekthor.model.TipeModel;
 import apap.tugas.sielekthor.service.BarangService;
 import apap.tugas.sielekthor.service.TipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +75,25 @@ public class BarangController {
     ) {
         barangService.updateBarang(barang);
         model.addAttribute("kodeBarang", barang.getKodeBarang());
-        System.out.println(barang.getStok());
-        System.out.println(barang.getTipe());
         return "update-barang";
+    }
+
+    @GetMapping("/barang/cari")
+    public String filterBarang(Model model) {
+        List<TipeModel> listAllTipe = tipeService.getListTipe();
+        model.addAttribute("listAllTipe", listAllTipe);
+        return "form-filter-barang";
+    }
+
+    @PostMapping("/barang/cari")
+    public String filterBarangList(
+            @RequestParam Long idTipe,
+            @RequestParam Boolean isAvail,
+            Model model) {
+        List<BarangModel> listBarang = barangService.getBarangListFilter(idTipe, isAvail);
+        List<TipeModel> listAllTipe = tipeService.getListTipe();
+        model.addAttribute("listAllTipe", listAllTipe);
+        model.addAttribute("listBarang", listBarang);
+        return "viewall-filter-barang";
     }
 }
