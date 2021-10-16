@@ -19,18 +19,18 @@
                 <form th:action="@{/pembelian/tambah}" th:object="${pembelian}" method="POST">
                     <input type="hidden" th:field="*{id}" />
 
-                    Nama Admin : <br>
+                    Nama Admin<br>
                     <input required class="form-control" type="text" th:field="*{namaAdmin}" />
                     <br><br>
 
-                    Pembeli: <br>
+                    Pembeli<br>
                     <select name="member" th:field="*{member.id}" class="form-control" th:style="'width:100%'">
                         <option th:each="member : ${listAllMember}" th:value="${member.id}" th:text="${member.namaMember}">
                         </option>
                     </select>
                     <br><br>
 
-                    Metode Pembayaran : <br>
+                    Metode Pembayaran<br>
                     <div>
                         <input type="radio" th:value="1" name="isCash" th:field="*{isCash}"/>
                         <label th:for="1" th:text="'Tunai'"></label><br>
@@ -43,7 +43,7 @@
                     <table>
                         <tbody>
                         <tr th:each="selectedPB, iterationStatus : ${listPembelianBarang}">
-                            <td class="col-md-9">Nama Barang <br>
+                            <td class="col-md-9">Nama Barang<br>
                                 <select class="form-control" th:field="*{listPembelianBarang[__${iterationStatus.index}__].barang}" th:style="'width:100%'">
                                     <option th:each="barang : ${listAllBarang}" th:value="${barang.id}" th:text="${barang.namaBarang}">
                                     </option>

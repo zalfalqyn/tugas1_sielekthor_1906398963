@@ -18,31 +18,31 @@
         background:#E0E0E0;
         border-radius:20px;'">
         <form th:action="@{/barang/tambah}" th:object="${barang}" method="POST" class="mr-3 ml-3">
-          Nama Barang : <br>
+          Nama Barang<br>
           <input required class="form-control" type="text" th:field="*{namaBarang}" />
 
-          Kode Barang : <br>
+          Kode Barang<br>
           <input required class="form-control" type="text" th:field="*{kodeBarang}" />
 
-          Merk Barang: <br>
+          Merk Barang<br>
           <input required class="form-control" type="text" th:field="*{merkBarang}" />
 
-          Stok Barang: <br>
+          Stok Barang<br>
           <input required min="0" class="form-control" type="number" th:field="*{stok}" />
 
-          Garansi Toko: <br>
+          Garansi Toko<br>
           <input required min="0" class="form-control" type="number" th:field="*{jumlahGaransi}" />
 
-          Deskripsi: <br>
+          Deskripsi<br>
           <input required class="form-control" type="text" th:field="*{deskripsiBarang}" />
 
-          Tipe: <br>
+          Tipe<br>
           <select class="form-control" name="tipe" th:style="'width:100%'">
             <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
             </option>
           </select>
 
-          Harga: <br>
+          Harga<br>
           <input required min="0" class="form-control " type="number" th:field="*{hargaBarang}" />
 
           <br>

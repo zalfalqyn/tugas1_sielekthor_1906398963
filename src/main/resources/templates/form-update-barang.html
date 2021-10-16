@@ -19,33 +19,33 @@
                 <form th:action="@{/barang/ubah}" th:object="${barang}" method="POST">
                     <input type="hidden" th:field="*{id}" />
 
-                    Nama Barang : <br>
+                    Nama Barang<br>
                     <input required class="form-control" type="text" name="namaBarang" th:value="*{namaBarang}" />
                     <br><br>
 
-                    Kode Barang: <br>
+                    Kode Barang<br>
                     <input required class="form-control" type="text" th:value="*{kodeBarang}" disabled/>
                     <input type="hidden" name="kodeBarang" th:field="*{kodeBarang}" />
                     <br><br>
 
-                    Merk Barang : <br>
+                    Merk Barang<br>
                     <input required class="form-control" type="text" th:value="*{merkBarang}" disabled />
                     <input type="hidden" name="merkBarang" th:field="*{merkBarang}" />
                     <br><br>
 
-                    Stok Barang: <br>
+                    Stok Barang<br>
                     <input required min="0" class="form-control" name="stok" type="number" th:value="*{stok}"/>
                     <br><br>
 
-                    Garansi Toko: <br>
+                    Garansi Toko<br>
                     <input required min="0" class="form-control" name="jumlahGaransi" type="number" th:value="*{jumlahGaransi}"/>
                     <br><br>
 
-                    Deskripsi: <br>
+                    Deskripsi<br>
                     <input required class="form-control" type="text" name="deskripsiBarang" th:value="*{deskripsiBarang}" />
                     <br><br>
 
-                    Tipe: <br>
+                    Tipe<br>
                     <select class="form-control" th:style="'width:100%'" disabled>
                         <option th:value="*{tipe.id}" th:text="*{tipe.nama}" >
                         </option>
@@ -53,7 +53,7 @@
                     <br><br>
                     <input type="hidden" name="tipe" th:field="*{tipe.id}" />
 
-                    Harga: <br>
+                    Harga<br>
                     <input required min="0" class="form-control" type="number" name="hargaBarang" th:field="*{hargaBarang}" />
                     <br><br>
 
