@@ -36,7 +36,7 @@
           Deskripsi<br>
           <input required class="form-control" type="text" th:field="*{deskripsiBarang}" />
 
-          Tipe<br>
+          Tipe Barang<br>
           <select class="form-control" name="tipe" th:style="'width:100%'">
             <option th:each="tipe : ${listTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
             </option>
@@ -47,7 +47,7 @@
 
           <br>
           <div class="d-flex justify-content-end">
-            <a class="btn btn-light text-warning border-warning mr-4" href="@{/barang}">Batal</a>
+            <a class="btn btn-light text-warning border-warning mr-4" href="/barang/">Batal</a>
           <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
           </div>
         </form>

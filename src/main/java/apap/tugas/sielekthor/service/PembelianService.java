@@ -10,7 +10,7 @@ public interface PembelianService {
     List<PembelianModel> getPembelianListFilter(Long Id, Boolean isCash);
     void generateInvoice(PembelianModel pembelian);
     PembelianModel getPembelianById(Long Id);
-    void addPembelian(PembelianModel pembelian);
+    boolean addPembelian(PembelianModel pembelian);
     Integer getTotalPembelian(PembelianModel pembelian);
     void deletePembelian(PembelianModel pembelian);
 }

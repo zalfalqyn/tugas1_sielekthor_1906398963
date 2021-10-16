@@ -1,5 +1,6 @@
 package apap.tugas.sielekthor.service;
 
+import apap.tugas.sielekthor.model.BarangModel;
 import apap.tugas.sielekthor.model.MemberModel;
 import apap.tugas.sielekthor.model.PembelianBarangModel;
 import apap.tugas.sielekthor.model.PembelianModel;
@@ -75,12 +76,15 @@ public class PembelianServiceImpl implements PembelianService{
     }
 
     @Override
-    public void addPembelian(PembelianModel pembelian) {
+    public boolean addPembelian(PembelianModel pembelian) {
         int totalHarga = 0;
         List<PembelianBarangModel> allBarangPembelian = pembelian.getListPembelianBarang();
         pembelian.setTanggalPembelian(LocalDateTime.now());
 
         for(PembelianBarangModel barangPembelian: allBarangPembelian) {
+            if(barangPembelian.getBarang().getStok()-barangPembelian.getQuantity() <= 0) {
+                return false;
+            }
             Integer jmlGaransi = barangPembelian.getBarang().getJumlahGaransi();
             LocalDateTime tglGaransi = pembelian.getTanggalPembelian().plusDays(jmlGaransi);
             barangPembelian.setTanggalGaransi(tglGaransi);
@@ -88,13 +92,16 @@ public class PembelianServiceImpl implements PembelianService{
             int hargaBarang = barangPembelian.getBarang().getHargaBarang();
             totalHarga += barangPembelian.getQuantity() * hargaBarang;
 
+            BarangModel barang = barangPembelian.getBarang();
+            barang.setStok(barang.getStok()-barangPembelian.getQuantity());
+
             barangPembelian.setPembelian(pembelian);
         }
-
 
         pembelian.setTotal(totalHarga);
         generateInvoice(pembelian);
         pembelianDB.save(pembelian);
+        return true;
     }
 
     @Override
@@ -111,6 +118,11 @@ public class PembelianServiceImpl implements PembelianService{
 
     @Override
     public void deletePembelian(PembelianModel pembelian){
+        List<PembelianBarangModel> listPembelianBarang = pembelian.getListPembelianBarang();
+        for(PembelianBarangModel pembelianBarang: listPembelianBarang) {
+            BarangModel barang = pembelianBarang.getBarang();
+            barang.setStok(barang.getStok()+pembelianBarang.getQuantity());
+        }
         pembelian.getMember().getListPembelian().remove(pembelian);
         pembelianDB.delete(pembelian);
     }

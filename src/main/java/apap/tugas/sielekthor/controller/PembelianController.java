@@ -131,7 +131,9 @@ public class PembelianController {
             @ModelAttribute PembelianModel pembelian,
             Model model
     ) {
-        pembelianService.addPembelian(pembelian);
+        if(!pembelianService.addPembelian(pembelian)) {
+            return "add-pembelian-error";
+        }
         model.addAttribute("id", pembelian.getId());
         return "add-pembelian";
     }

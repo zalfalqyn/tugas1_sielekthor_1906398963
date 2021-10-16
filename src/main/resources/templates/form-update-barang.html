@@ -11,60 +11,54 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-    <div class="card m-4 p-4">
-        <div class="card-body">
-            <div class="justify-content-center">
-                <h2>Ubah Barang</h2>
-                <br>
-                <form th:action="@{/barang/ubah}" th:object="${barang}" method="POST">
-                    <input type="hidden" th:field="*{id}" />
+    <div class="card-body row no-gutters justify-content-center">
+        <h2 class="text-center col-md-12">Form Ubah Barang</h2>
+        <br>
+        <div class="container col-md-8 p-4 m-4" th:style="'
+        background:#E0E0E0;
+        border-radius:20px;'">
+            <form th:action="@{/barang/ubah}" th:object="${barang}" method="POST" class="mr-3 ml-3">
+                <input type="hidden" th:field="*{id}" />
 
                     Nama Barang<br>
                     <input required class="form-control" type="text" name="namaBarang" th:value="*{namaBarang}" />
-                    <br><br>
 
                     Kode Barang<br>
                     <input required class="form-control" type="text" th:value="*{kodeBarang}" disabled/>
                     <input type="hidden" name="kodeBarang" th:field="*{kodeBarang}" />
-                    <br><br>
 
                     Merk Barang<br>
                     <input required class="form-control" type="text" th:value="*{merkBarang}" disabled />
                     <input type="hidden" name="merkBarang" th:field="*{merkBarang}" />
-                    <br><br>
 
                     Stok Barang<br>
                     <input required min="0" class="form-control" name="stok" type="number" th:value="*{stok}"/>
-                    <br><br>
 
                     Garansi Toko<br>
                     <input required min="0" class="form-control" name="jumlahGaransi" type="number" th:value="*{jumlahGaransi}"/>
-                    <br><br>
 
                     Deskripsi<br>
                     <input required class="form-control" type="text" name="deskripsiBarang" th:value="*{deskripsiBarang}" />
-                    <br><br>
 
-                    Tipe<br>
+                    Tipe Barang<br>
                     <select class="form-control" th:style="'width:100%'" disabled>
                         <option th:value="*{tipe.id}" th:text="*{tipe.nama}" >
                         </option>
                     </select>
-                    <br><br>
                     <input type="hidden" name="tipe" th:field="*{tipe.id}" />
 
                     Harga<br>
                     <input required min="0" class="form-control" type="number" name="hargaBarang" th:field="*{hargaBarang}" />
-                    <br><br>
 
                     <br>
+                    <div class="d-flex justify-content-end">
+                    <a class="btn btn-light text-warning border-warning mr-4" href="/barang">Batal</a>
                     <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
-                    <a class="btn btn-outline-warning" href="/barang">Batal</a>
+                </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 
