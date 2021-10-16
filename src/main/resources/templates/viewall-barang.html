@@ -34,7 +34,7 @@
             </thead>
             <tbody>
             <tr th:each="barang, iterationStatus : ${listBarang}"
-                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'" class="text-center">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${barang.namaBarang}"></td>
                 <td th:text="Rp + ${barang.hargaBarang}"></td>

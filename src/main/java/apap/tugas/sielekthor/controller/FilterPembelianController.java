@@ -24,14 +24,14 @@ public class FilterPembelianController {
     @Autowired
     private PembelianService pembelianService;
 
-    @GetMapping("/filter-pembelian")
+    @GetMapping("/cari/pembelian")
     public String filterPembelian(Model model) {
         List<MemberModel> listAllMember = memberService.getMemberList();
         model.addAttribute("listAllMember", listAllMember);
         return "form-filter-pembelian";
     }
 
-    @PostMapping("/filter-pembelian")
+    @PostMapping("/cari/pembelian")
     public String filterPembelianList(
             @RequestParam Long idMember,
             @RequestParam Boolean isCash,

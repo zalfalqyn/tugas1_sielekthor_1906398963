@@ -13,6 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +34,13 @@ public class PembelianController {
     public String listBarang(Model model) {
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
         List<Integer> listJumlahBarang = new ArrayList<>();
-
+        List<String> listTglPembelian = new ArrayList<>();
         for(PembelianModel pembelian: listPembelian) {
+            String pattern = "dd MMMM yyyy";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            String tglPembelian = pembelian.getTanggalPembelian().format(formatter);
+            listTglPembelian.add(tglPembelian);
+
             List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
             int jumlahBarang = 0;
             for(PembelianBarangModel pembelianBarang: listPB) {
@@ -41,6 +50,7 @@ public class PembelianController {
         }
         model.addAttribute("listPembelian", listPembelian);
         model.addAttribute("listJumlahBarang", listJumlahBarang);
+        model.addAttribute("listTglPembelian", listTglPembelian);
         return "viewall-pembelian";
     }
 
@@ -53,17 +63,27 @@ public class PembelianController {
         List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
         List<Integer> listTotalHargaBarang = new ArrayList<>();
         int totalBarang = 0;
+        String pattern = "E, dd MMMM yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        String tglPembelian = pembelian.getTanggalPembelian().format(formatter);
+
+        List<String> listTglGaransi = new ArrayList<>();
         for(PembelianBarangModel barangPembelian: listPB) {
             int jumlahBarang = barangPembelian.getQuantity();
             int hargaBarang = barangPembelian.getBarang().getHargaBarang();
             listTotalHargaBarang.add(jumlahBarang*hargaBarang);
             totalBarang += jumlahBarang;
+
+            String tglGaransi = barangPembelian.getTanggalGaransi().format(formatter);
+            listTglGaransi.add(tglGaransi);
         }
         List<PembelianModel> listPembelian = pembelianService.getPembelianList();
         model.addAttribute("pembelian", pembelian);
         model.addAttribute("listPB", listPB);
         model.addAttribute("totalBarang", totalBarang);
         model.addAttribute("listTotalHargaBarang", listTotalHargaBarang);
+        model.addAttribute("tglPembelian", tglPembelian);
+        model.addAttribute("listTglGaransi", listTglGaransi);
         return "view-pembelian";
     }
 

@@ -17,12 +17,13 @@
         <h2>
         <span th:text="'Data member ' + ${namaMember} + ' berhasil diubah dan nomor invoice
         menjadi:'"></span>
+        </h2>
+          <h3>
         <ol>
           <li class="text-warning" th:each="noInvoice, iterationStatus : ${listNoInvoice}" th:text="${noInvoice}">
           </li>
         </ol>
-          <span class="text-danger" th:unless="${listNoInvoice.size() != 0}" th:text="'(Tidak ada invoice)'"></span>
-        </h2>
+          <span class="text-danger" th:unless="${listNoInvoice.size() != 0}" th:text="'(Tidak ada invoice)'"></span></h3>
         <br>
         <a class="btn btn-outline-warning" href="/member">Kembali</a>
       </div>

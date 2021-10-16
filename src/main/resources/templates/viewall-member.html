@@ -34,11 +34,11 @@
             </thead>
             <tbody>
             <tr th:each="member, iterationStatus : ${listMember}"
-                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'" class="text-center">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${member.namaMember}"></td>
-                <td th:text="${member.tanggalLahir}"></td>
-                <td th:text="${member.tanggalPendaftaran}"></td>
+                <td th:text="${listTglLahir[__${iterationStatus.index}__]}"></td>
+                <td th:text="${listTglDaftar[__${iterationStatus.index}__]}"></td>
                 <td th:if="${member.jenisKelamin} == 1">Laki-laki</td>
                 <td th:if="${member.jenisKelamin} == 0">Perempuan</td>
                 <td>

@@ -16,13 +16,14 @@
       <div class="justify-content-center">
         <h2>
         <span th:text="'Pembelian dengan nomor invoice ' + ${noInvoice} + ' berhasil dihapus dan stok barang:'"></span>
+        </h2>
+        <h3>
         <ol>
           <li class="text-warning" th:each="pembelianBarang, iterationStatus : ${listPB}"
               th:text="${pembelianBarang.barang.namaBarang} + ' bertambah menjadi ' + ${pembelianBarang.barang.stok}">
           </li>
         </ol>
-          <span class="text-danger" th:unless="${listPB.size() != 0}" th:text="'(Tidak ada barang)'"></span>
-        </h2>
+          <span class="text-danger" th:unless="${listPB.size() != 0}" th:text="'(Tidak ada barang)'"></span></h3>
         <br>
         <a class="btn btn-outline-warning" href="/pembelian">Kembali</a>
       </div>

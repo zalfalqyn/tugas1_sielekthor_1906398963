@@ -34,15 +34,14 @@
             </tr>
             </thead>
             <tbody>
-            <div th:with="jumlahBarang=0"></div>
             <tr th:each="pembelian, iterationStatus : ${listPembelian}"
-                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
+                th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'" class="text-center">
                 <td th:text="${iterationStatus.count}"></td>
                 <td th:text="${pembelian.noInvoice}"></td>
                 <td th:text="Rp + ${pembelian.total}"></td>
                 <td th:text="${pembelian.member.namaMember}"></td>
                 <td th:text="${listJumlahBarang[__${iterationStatus.index}__]}"></td>
-                <td th:text="${pembelian.tanggalPembelian}"></td>
+                <td th:text="${listTglPembelian[__${iterationStatus.index}__]}"></td>
                 <td>
                     <a class="btn btn-sm btn-primary" th:href="@{/pembelian/} + ${pembelian.id}">Lihat</a>
                     <form th:action="@{/pembelian/hapus/} + ${pembelian.id}" method="POST">

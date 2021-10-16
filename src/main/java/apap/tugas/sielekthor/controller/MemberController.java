@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,20 @@ public class MemberController {
 
     @GetMapping("/member")
     public String listMember(Model model) {
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-dd-MM");
         List<MemberModel> listMember = memberService.getMemberList();
+        List<String> listTglLahir = new ArrayList<>();
+        List<String> listTglDaftar = new ArrayList<>();
+        for(MemberModel member: listMember) {
+            String tglLahir = member.getTanggalLahir().format(formatter1);
+            String tglDaftar = member.getTanggalPendaftaran().format(formatter2);
+            listTglLahir.add(tglLahir);
+            listTglDaftar.add(tglDaftar);
+        }
         model.addAttribute("listMember", listMember);
+        model.addAttribute("listTglLahir", listTglLahir);
+        model.addAttribute("listTglDaftar", listTglDaftar);
         return "viewall-member";
     }
 

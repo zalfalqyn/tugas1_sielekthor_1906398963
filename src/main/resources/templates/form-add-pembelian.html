@@ -11,10 +11,10 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-    <div class="card m-4 p-4">
+    <div class="m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2>Form Tambah Pembelian</h2>
+                <h2 class="text-center">Form Tambah Pembelian</h2>
                 <br>
                 <form th:action="@{/pembelian/tambah}" th:object="${pembelian}" method="POST">
                     <input type="hidden" th:field="*{id}" />
@@ -25,7 +25,6 @@
 
                     Pembeli: <br>
                     <select name="member" th:field="*{member.id}" class="form-control" th:style="'width:100%'">
-<!--                        <option selected disabled>&#45;&#45;Pilih Member&#45;&#45;</option>-->
                         <option th:each="member : ${listAllMember}" th:value="${member.id}" th:text="${member.namaMember}">
                         </option>
                     </select>
@@ -59,7 +58,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-9">
-                                <button class="btn btn-primary" type="submit" name="addRow" >Tambah Row</button>
+                                <button class="btn btn-primary mt-3" type="submit" name="addRow" >Tambah Row</button>
                             </td>
                         </tr>
                         </thead>
@@ -67,8 +66,10 @@
                     </table>
                     <br>
                     <hr>
-                    <a class="btn btn-outline-warning" href="/">Batal</a>
-                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
+                    <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-warning mr-3" href="/">Batal</a>
+                    <button class="btn btn-warning ml-3" type="submit"  name="submit">Simpan</button>
+                    </div>
                 </form>
             </div>
         </div>

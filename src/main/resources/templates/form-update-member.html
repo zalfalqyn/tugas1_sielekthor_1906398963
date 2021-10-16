@@ -11,10 +11,10 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-    <div class="card m-4 p-4">
+    <div class="m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2>Form Ubah Member</h2>
+                <h2 class="text-center">Form Ubah Member</h2>
                 <br>
                 <form th:action="@{/member/ubah}" th:object="${member}" method="POST">
                     <input type="hidden" th:field="*{id}"/>
@@ -39,10 +39,11 @@
                         <label th:for="0" th:text="'Perempuan'"></label>
                         <input type="hidden" th:field="*{jenisKelamin}"/>
                     </div>
-
+                    <hr>
                     <br>
-                    <button class="btn btn-warning" type="submit"  name="submit">Simpan</button>
-                    <a class="btn btn-outline-warning" href="/member">Batal</a>
+                    <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-warning mr-4" href="/member">Batal</a>
+                    <button class="btn btn-warning ml-4" type="submit" name="submit">Simpan</button></div>
                 </form>
             </div>
         </div>

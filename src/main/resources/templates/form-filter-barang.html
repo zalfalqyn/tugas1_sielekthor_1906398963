@@ -14,18 +14,16 @@
     <div class="card-body row no-gutters justify-content-center">
         <h2 class="text-center col-md-12">Cari Barang</h2>
         <br>
-      <div class="container col-md-8 p-4 m-4" th:style="'
-        background:#E0E0E0;
-        border-radius:20px;'">
+      <div class="container col-md-8 p-4 m-4">
         <form th:action="@{/barang/cari}" method="POST" class="mr-3 ml-3">
-          Tipe : <br>
+          Tipe<br>
           <select name="idTipe" class="form-control" th:style="'width:100%'">
             <option th:each="tipe : ${listAllTipe}" th:value="${tipe.id}" th:text="${tipe.nama}">
             </option>
           </select>
           <br><br>
 
-          Stok : <br>
+          Stok<br>
           <div>
             <input type="radio" th:value="1" name="isAvail"/>
             <label th:for="1" th:text="'Available'"></label><br>
@@ -36,8 +34,8 @@
 
           <br>
           <div class="d-flex justify-content-center">
-            <button class="btn btn-warning" type="submit" >Cari</button>
-            <a class="btn btn-light text-warning border-warning mr-4" href="/barang">Kembali</a>
+            <button class="btn btn-warning pr-5 pl-5 mr-4" type="submit" >Cari</button>
+            <a class="btn btn-light text-warning border-warning pr-5 pl-5 ml-4" href="/pembelian">Kembali</a>
           </div>
         </form>
       </div>

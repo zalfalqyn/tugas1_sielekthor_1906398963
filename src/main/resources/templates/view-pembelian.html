@@ -11,7 +11,7 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-  <div class="card m-4 p-4">
+  <div class="m-4 p-4">
     <div class="card-body">
       <div class="justify-content-center">
         <h2 class="bg-warning" th:style=
@@ -41,7 +41,7 @@
           </tr>
           <tr>
             <td th:text="'Tanggal Pembelian'"></td>
-            <td th:text="': '+ ${pembelian.tanggalPembelian}"></td>
+            <td th:text="': '+ ${tglPembelian}"></td>
           </tr>
           <tr>
             <td th:text="'Nama Admin'"></td>
@@ -54,55 +54,57 @@
           </tr>
           </tbody>
         </table>
-        <form th:action="@{/pembelian/hapus/} + ${pembelian.id}" method="POST">
-          <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+        <form th:action="@{/pembelian/hapus/} + ${pembelian.id}" method="POST"
+              class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-danger pl-4 pr-4 pt-2 pb-2" type="submit">Hapus</button>
         </form>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container" th:style="'margin-top:70px;'">
-  <h2 th:style=
-              "'text-align:center;
+
+    <div class="container" th:style="'margin-top:30px;'">
+      <h2 th:style=
+                  "'text-align:center;
             padding-bottom:20px;'"
-  >Daftar Barang</h2>
-  <br>
-  <div th:if="*{listPB.size() != 0}">
-    <table class="table">
-      <thead>
-      <tr th:style="'text-align:center;'" class="bg-warning">
-        <th>No</th>
-        <th>Nama</th>
-        <th>Merk</th>
-        <th>Tipe</th>
-        <th>Tanggal Garansi</th>
-        <th>Harga</th>
-        <th>Qty</th>
-        <th>Total</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="pembelianBarang, iterationStatus : ${listPB}"
-          th:style="${iterationStatus.odd} ? 'background:#E0E0E0;'">
-        <td th:text="${iterationStatus.count}"></td>
-        <td th:text="${pembelianBarang.barang.namaBarang}"></td>
-        <td th:text="${pembelianBarang.barang.merkBarang}"></td>
-        <td th:text="${pembelianBarang.barang.tipe.nama}"></td>
-        <td th:text="${pembelianBarang.tanggalGaransi}"></td>
-        <td th:text="Rp + ${pembelianBarang.barang.hargaBarang}"></td>
-        <td th:text="${pembelianBarang.quantity}"></td>
-        <td th:text="Rp + ${listTotalHargaBarang[__${iterationStatus.index}__]}"></td>
-      </tr>
-      </tbody>
-    </table>
-    </form>
+      >Daftar Barang</h2>
+      <br>
+      <div th:if="*{listPB.size() != 0}">
+        <table class="table">
+          <thead>
+          <tr th:style="'text-align:center;'" class="bg-warning">
+            <th>No</th>
+            <th>Nama</th>
+            <th>Merk</th>
+            <th>Tipe</th>
+            <th>Tanggal Garansi</th>
+            <th>Harga</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="pembelianBarang, iterationStatus : ${listPB}" class="text-center">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${pembelianBarang.barang.namaBarang}"></td>
+            <td th:text="${pembelianBarang.barang.merkBarang}"></td>
+            <td th:text="${pembelianBarang.barang.tipe.nama}"></td>
+            <td th:text="${listTglGaransi[__${iterationStatus.index}__]}"></td>
+            <td th:text="Rp + ${pembelianBarang.barang.hargaBarang}"></td>
+            <td th:text="${pembelianBarang.quantity}"></td>
+            <td th:text="Rp + ${listTotalHargaBarang[__${iterationStatus.index}__]}"></td>
+          </tr>
+          </tbody>
+        </table>
+        </form>
+      </div>
+      <div th:unless="*{listPB.size() != 0}">
+        <h2 th:text="'Tidak ada barang'"></h2>
+      </div>
+      <br><br>
+      <a class="btn btn-outline-warning" href="/pembelian">Kembali</a>
+    </div>
+
   </div>
-  <div th:unless="*{listPB.size() != 0}">
-    <h2 th:text="'Tidak ada barang'"></h2>
-  </div>
-<br><br>
-<a class="btn btn-outline-warning" href="/pembelian">Kembali</a>
 </div>
 </body>
 

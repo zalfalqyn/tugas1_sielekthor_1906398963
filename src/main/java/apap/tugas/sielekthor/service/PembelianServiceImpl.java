@@ -55,16 +55,17 @@ public class PembelianServiceImpl implements PembelianService{
             kodeBayar = "02";
         }
 
-        String sumTanggalBulan = Integer.toString(intTglBeli+intBulanBeli);
-        if(sumTanggalBulan.length()==2) {
-            sumTanggalBulan='0'+sumTanggalBulan;
+        int tanggalXbulan = (intTglBeli+intBulanBeli)*5;
+        String strTanggalXBulan = Integer.toString(tanggalXbulan);
+        if(strTanggalXBulan.length()==2) {
+            strTanggalXBulan='0'+strTanggalXBulan;
         }
 
         int rand1 = new Random().nextInt(24) + 65;
         int rand2 = new Random().nextInt(24) + 65;
         String randomLetter = String.valueOf(Character.toChars(rand1)) + String.valueOf(Character.toChars(rand2));
 
-        String noInvoice = namaMemberOrder + lastNamaAdmin + strTglBeli + strBulanBeli + kodeBayar + sumTanggalBulan + randomLetter;
+        String noInvoice = namaMemberOrder + lastNamaAdmin + strTglBeli + strBulanBeli + kodeBayar + strTanggalXBulan + randomLetter;
         pembelian.setNoInvoice(noInvoice);
     }
 
